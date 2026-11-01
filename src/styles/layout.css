@@ -318,7 +318,7 @@ html {
   stroke: rgb(42 23 14 / 0.15);
 }
 
-/* Scene shell, shared by home and /faq */
+/* Scene shell, shared by home, /faq and /how-it-works */
 .tp-scene {
   --ink: var(--color-cocoa);
   --ink-soft: var(--color-cocoa-soft);

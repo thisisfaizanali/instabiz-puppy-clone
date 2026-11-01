@@ -377,3 +377,9 @@
   display: block;
   overflow: visible;
 }
+
+@media (max-width: 639px) {
+  .tp-flight {
+    width: 86%;
+  }
+}
