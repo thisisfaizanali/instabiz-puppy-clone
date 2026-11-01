@@ -194,3 +194,67 @@
     font-size: .66rem;
   }
 }
+
+/* Filter sketchpad: a taped-down card holding the sticker chips */
+.tp-sketchpad {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  border-radius: 1.2rem 1.6rem 1.3rem 1.5rem;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem) clamp(1.1rem, 2.6vw, 1.75rem);
+  position: relative;
+  rotate: -.35deg;
+  box-shadow: 5px 7px #2a170e1f;
+}
+
+.tp-sketchpad::before {
+  content: "";
+  background: color-mix(in oklab, var(--color-honey) 55%, white);
+  opacity: .85;
+  width: 5.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: -.85rem;
+  left: 2.2rem;
+  rotate: -4deg;
+  box-shadow: 0 1px 2px #2a170e26;
+}
+
+.tp-sticker-chip {
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  min-height: 2.75rem;
+  transition: background-color .25s, color .25s, rotate .35s var(--ease-pounce), translate .35s var(--ease-pounce), box-shadow .25s;
+  border-radius: 999px;
+  padding: .45rem 1rem;
+  font-size: .95rem;
+  font-weight: 650;
+  box-shadow: 2px 3px #2a170e24;
+}
+
+.tp-sticker-chip:hover {
+  background: var(--color-honey-soft);
+  translate: 0 -1px;
+}
+
+.tp-sticker-chip:active {
+  translate: 0 1px;
+  box-shadow: 0 0 #2a170e24;
+}
+
+.tp-sticker-chip[aria-pressed="true"] {
+  background: var(--color-cocoa);
+  color: var(--color-milk);
+  rotate: -2deg;
+  box-shadow: 1px 2px #2a170e40;
+}
+
+.link-ink {
+  color: var(--color-toffee-ink);
+  text-underline-offset: .2em;
+  text-decoration: underline color-mix(in oklab, var(--color-toffee) 55%, transparent);
+  text-decoration-thickness: 2px;
+}
+
+.link-ink:hover {
+  text-decoration-color: currentColor;
+}
