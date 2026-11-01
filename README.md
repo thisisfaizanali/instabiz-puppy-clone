@@ -17,7 +17,22 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. For a production build:
+Open http://localhost:3000.
+
+### Environment variables
+
+Puppy enquiries are emailed through the [Resend](https://resend.com) HTTP API. Copy `.env.example` to `.env.local` and fill in:
+
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API key. When it or `ENQUIRY_TO_EMAIL` is empty, enquiries are logged to the server console instead of emailed, and the form still succeeds, so local development needs no key. If only one of the two is set, the server also logs a one-line warning. |
+| `ENQUIRY_TO_EMAIL` | Address that receives enquiries. Emails are sent from `onboarding@resend.dev`, which Resend only delivers to the address of the account that owns the key. |
+
+| `SITE_URL` | Optional. Origin for absolute URLs (`metadataBase`, JSON-LD, shared links, enquiry emails), e.g. `https://example.com`. When unset, the app uses `https://$VERCEL_PROJECT_PRODUCTION_URL` on Vercel, then `http://localhost:3000`. Statically rendered pages read it at build time. |
+
+Never commit a real key; `.env.local` is git-ignored.
+
+For a production build:
 
 ```bash
 npm run build

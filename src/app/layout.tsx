@@ -3,6 +3,7 @@ import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -23,6 +24,7 @@ const shantell = Shantell_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
     default: "TeddyPups U.A.E. — Premium teacup puppies in Dubai",
     template: "%s | TeddyPups U.A.E.",

@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { PuppySketch } from "@/components/puppy-sketch";
 import { getPuppies } from "@/lib/puppies";
+import { whatsappLink } from "@/lib/site";
 import { usePuppyFilters } from "./puppy-filters";
 
-const askHref =
-  "https://wa.me/971541676733?text=Hi%20TeddyPups!%20I'm%20looking%20for%20a%20puppy%20%E2%80%94%20what%20do%20you%20have%20at%20the%20moment%3F";
+const askHref = whatsappLink("Hi TeddyPups! I'm looking for a puppy — what do you have at the moment?");
 
 // Count line, then the matching sketches or, when nothing matches, Teddy's empty state.
 export function PuppyListing() {
