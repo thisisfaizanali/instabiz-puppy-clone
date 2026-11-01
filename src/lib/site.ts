@@ -1,6 +1,14 @@
 export const site = {
   name: "TeddyPups U.A.E.",
   shortName: "TeddyPups",
+  // Origin for absolute URLs (metadataBase, JSON-LD, shared links, enquiry emails): SITE_URL,
+  // then the production domain Vercel provides, then local dev. A getter, so the env vars are
+  // only read where it's used, which is server code; client components never touch it.
+  get url() {
+    if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/, "");
+    if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+    return "http://localhost:3000";
+  },
   phone: {
     display: "+971 54 167 6733",
     href: "tel:+971541676733",

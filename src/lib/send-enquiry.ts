@@ -2,6 +2,7 @@
 
 import { type EnquiryErrors, resendConfig, validateEnquiry } from "./enquiry";
 import { getPuppy } from "./puppies";
+import { site } from "./site";
 
 export type EnquiryState = {
   ok: boolean;
@@ -26,7 +27,7 @@ export async function sendEnquiry(_prev: EnquiryState, formData: FormData): Prom
     `Phone: ${enquiry.phone}`,
     enquiry.email && `Email: ${enquiry.email}`,
     enquiry.area && `Area: ${enquiry.area}`,
-    puppy && `Puppy: ${about}, /puppies/${puppy.slug}`,
+    puppy && `Puppy: ${about}, ${site.url}/puppies/${puppy.slug}`,
     enquiry.message && `\n${enquiry.message}`,
   ]
     .filter(Boolean)
