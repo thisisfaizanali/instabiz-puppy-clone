@@ -1,3 +1,11 @@
+// The business number, used for calls and WhatsApp.
+const phoneNumber = "971541676733";
+
+// A wa.me link that opens WhatsApp with the message already typed.
+export function whatsappLink(message: string) {
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export const site = {
   name: "TeddyPups U.A.E.",
   shortName: "TeddyPups",
@@ -11,10 +19,9 @@ export const site = {
   },
   phone: {
     display: "+971 54 167 6733",
-    href: "tel:+971541676733",
+    href: `tel:+${phoneNumber}`,
   },
-  whatsapp:
-    "https://wa.me/971541676733?text=Hi%20TeddyPups!%20I'd%20love%20to%20know%20more%20about%20your%20puppies.",
+  whatsapp: whatsappLink("Hi TeddyPups! I'd love to know more about your puppies."),
   email: "teddypupsadmin@gmail.com",
   address: "Downtown Dubai, United Arab Emirates",
   socials: [

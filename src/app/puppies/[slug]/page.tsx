@@ -9,7 +9,7 @@ import { PuppyGallery } from "@/components/puppy/puppy-gallery";
 import { puppies } from "@/data/puppies";
 import { coverStyle } from "@/lib/media";
 import { getAdjacentPuppies, getPuppy } from "@/lib/puppies";
-import { site } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 import type { Puppy } from "@/lib/types";
 
 const genderWords: Record<Puppy["gender"], string> = { male: "boy", female: "girl", "male-female": "boy & girl" };
@@ -99,10 +99,9 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
   // "Max" or "this Maltipoo"; the prefilled message uses "Max (Maltipoo)" or just "Maltipoo".
   const called = puppy.name || `this ${puppy.breed}`;
   const label = puppy.name ? `${puppy.name} (${puppy.breed})` : puppy.breed;
-  const whatsapp = (text: string) => `https://wa.me/971541676733?text=${encodeURIComponent(text)}`;
   const askHref = available
-    ? whatsapp(`Hi TeddyPups! I'm interested in ${puppy.name ? `${puppy.name}, the ${puppy.breed}` : `the ${puppy.breed} (${gender})`}: ${url}`)
-    : whatsapp(`Hi TeddyPups! I loved ${puppy.name || `the ${puppy.breed}`} (${url}). Do you have a puppy like them?`);
+    ? whatsappLink(`Hi TeddyPups! I'm interested in ${puppy.name ? `${puppy.name}, the ${puppy.breed}` : `the ${puppy.breed} (${gender})`}: ${url}`)
+    : whatsappLink(`Hi TeddyPups! I loved ${puppy.name || `the ${puppy.breed}`} (${url}). Do you have a puppy like them?`);
   // Only imported puppies are listed today; the reference's text for a local puppy isn't visible.
   const showHomeSteps = available && puppy.origin === "imported";
   const rows = [
