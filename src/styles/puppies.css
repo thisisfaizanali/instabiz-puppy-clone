@@ -258,3 +258,129 @@
 .link-ink:hover {
   text-decoration-color: currentColor;
 }
+
+/* /puppies: Teddy's sketchbook header and the sketch grid */
+@utility text-giant {
+  font-size: clamp(3.1rem, 9.4vw, 9.75rem);
+}
+
+.tp-sketchbook {
+  background: radial-gradient(circle at 1px 1px, #2a170e17 1px, transparent 1.6px) 0 0 / 26px 26px, linear-gradient(180deg, #fff8ec, var(--color-milk) 60%);
+}
+
+.tp-sketchbook__head {
+  align-items: end;
+  gap: 2rem 3rem;
+  display: grid;
+}
+
+.tp-sketchbook__title {
+  padding-bottom: .18em;
+  display: inline-block;
+  position: relative;
+}
+
+.tp-sketchbook__underline {
+  width: 100%;
+  height: .24em;
+  position: absolute;
+  bottom: -.05em;
+  left: 0;
+  overflow: visible;
+}
+
+.tp-sketchbook__underline path {
+  fill: none;
+  stroke: var(--color-toffee);
+  stroke-width: 7px;
+  stroke-linecap: round;
+}
+
+.tp-sketchbook__self {
+  aspect-ratio: 1;
+  border: 3px solid var(--color-cocoa);
+  background: color-mix(in oklab, var(--color-honey-soft) 70%, var(--color-milk));
+  border-radius: 52% 48% 50% 50% / 50% 52% 48% 50%;
+  justify-self: end;
+  width: clamp(9rem, 26vw, 13rem);
+  padding: 1.4rem 1.2rem .6rem;
+  position: relative;
+}
+
+.tp-sketchbook__self::after {
+  content: "";
+  pointer-events: none;
+  border: 2px solid #2a170e73;
+  border-radius: 48% 52% 47% 53% / 53% 47%;
+  position: absolute;
+  inset: -7px -4px -5px -6px;
+  rotate: -6deg;
+}
+
+/* The self-portrait faces left */
+.tp-sketchbook__teddy {
+  width: 100%;
+  height: auto;
+  display: block;
+  scale: -1 1;
+}
+
+.tp-sketchbook__caption {
+  white-space: nowrap;
+  color: var(--color-cocoa-soft);
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  translate: -50%;
+}
+
+@media (min-width: 768px) {
+  .tp-sketchbook__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .tp-sketchbook__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0 1rem;
+  }
+
+  .tp-sketchbook__words {
+    display: contents;
+  }
+
+  .tp-sketchbook__words > * {
+    grid-column: 1 / -1;
+  }
+
+  .tp-sketchbook__words > .tp-sketchbook__lede {
+    text-align: left;
+    grid-column: 1;
+    font-size: 1.0625rem;
+  }
+
+  .tp-sketchbook__self {
+    grid-column: 2;
+    width: clamp(7.5rem, 34vw, 9.5rem);
+    margin-top: 1.5rem;
+  }
+}
+
+.tp-sketches {
+  grid-template-columns: repeat(auto-fill, minmax(min(14.5rem, 40vw), 1fr));
+  gap: 3.25rem clamp(1.1rem, 3vw, 2.5rem);
+  padding-inline: .4rem;
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .tp-sketches {
+    padding-bottom: 2.4rem;
+  }
+
+  .tp-sketches > li:nth-child(2n) {
+    translate: 0 2.4rem;
+  }
+}
