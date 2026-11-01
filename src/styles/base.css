@@ -8,6 +8,7 @@
   --color-cocoa-soft: #5a3a28;
   --color-milk: #fffdf8;
   --color-blush: #f9cdbf;
+  --color-sky-deep: #2f6e9e;
 
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -158,4 +159,8 @@ body {
 
 @utility text-big {
   font-size: clamp(2rem, 4.2vw, 4rem);
+}
+
+@utility measure {
+  max-width: 62ch;
 }

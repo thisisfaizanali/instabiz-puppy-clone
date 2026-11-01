@@ -317,3 +317,23 @@ html {
 .tp-basket__weave--stakes {
   stroke: rgb(42 23 14 / 0.15);
 }
+
+/* Scene shell, shared by home, /faq and /how-it-works */
+.tp-scene {
+  --ink: var(--color-cocoa);
+  --ink-soft: var(--color-cocoa-soft);
+  color: var(--ink);
+  background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+  position: relative;
+}
+
+.tp-scene[data-tone=dark] {
+  --ink: var(--color-milk);
+  --ink-soft: #fffdf8cc;
+}
+
+@supports (color:color-mix(in lab, red, red)) {
+  .tp-scene[data-tone=dark] {
+    --ink-soft: color-mix(in oklab, var(--color-milk) 80%, transparent);
+  }
+}
