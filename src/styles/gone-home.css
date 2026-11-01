@@ -1,4 +1,51 @@
-/* /gone-home: the wall of tickets home */
+/* /gone-home: the ticket booth header and the wall of tickets home */
+.tp-boothhead {
+  align-items: end;
+  gap: 2.5rem;
+  display: grid;
+}
+
+@media (min-width: 768px) {
+  .tp-boothhead {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+.tp-booth {
+  --bw: clamp(11rem, 30vw, 15rem);
+  width: var(--bw);
+  justify-self: end;
+  position: relative;
+}
+
+.tp-booth__teddy {
+  z-index: 1;
+  width: 100%;
+  position: relative;
+}
+
+.tp-booth__counter {
+  z-index: 2;
+  height: calc(var(--bw) * .42);
+  margin-top: calc(var(--bw) * -.272);
+  border: 3px solid var(--color-cocoa);
+  background:
+    linear-gradient(var(--color-cocoa), var(--color-cocoa)) 0 2.05rem / 100% 3px no-repeat,
+    repeating-linear-gradient(90deg, var(--color-toffee) 0 1.3rem, var(--color-milk) 1.3rem 2.6rem) 0 0 / 100% 2.05rem no-repeat,
+    linear-gradient(#fff1d8, #fbe3b4);
+  border-radius: .9rem .9rem .4rem .4rem;
+  place-items: center;
+  padding-top: 2rem;
+  display: grid;
+  position: relative;
+  box-shadow: 6px 8px #2a170e24;
+}
+
+.tp-booth__counter span {
+  color: var(--color-toffee-ink);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
 .tp-tickets {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
   gap: 2.25rem 1.75rem;
