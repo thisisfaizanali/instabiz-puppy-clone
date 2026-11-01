@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { site } from "@/lib/site";
-import { Paw } from "./site-header";
+import { Paw } from "./paw";
 
 export function MobileMenu() {
   const pathname = usePathname();

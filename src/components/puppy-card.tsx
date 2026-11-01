@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { coverStyle } from "@/lib/media";
 import type { Puppy } from "@/lib/types";
-import { Paw } from "./site-header";
+import { Paw } from "./paw";
 
 const doorColours = ["#a24a1a", "#5a3a28", "#d4893f", "#b8644a", "#7a4a2e"];
 
