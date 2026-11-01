@@ -15,6 +15,26 @@ test("counts per breed match the reference", () => {
   assert.deepEqual(counts, { maltipoo: 6, pomeranian: 4, poodle: 2, cavapoo: 2, "shih-tzu": 2 });
 });
 
+test("gender and collection counts match the reference", () => {
+  assert.equal(getPuppies({ gender: "male" }).length, 6);
+  assert.equal(getPuppies({ gender: "female" }).length, 10);
+  assert.equal(getPuppies({ breed: "poodle", gender: "male" }).length, 1);
+  assert.equal(getPuppies({ breed: "poodle", gender: "female" }).length, 2);
+  assert.equal(getPuppies({ collection: "korean-teacup" }).length, 5);
+  assert.equal(getPuppies({ origin: "imported", collection: "korean-teacup" }).length, 5);
+  assert.equal(getPuppies({ collection: "korean-teacup", breed: "pomeranian" }).length, 3);
+  assert.equal(getPuppies({ collection: "korean-teacup", breed: "pomeranian", gender: "male" }).length, 1);
+  assert.equal(getPuppies({ collection: "korean-teacup", breed: "pomeranian", gender: "female" }).length, 2);
+  assert.equal(getPuppies({ collection: "korean-teacup", breed: "shih-tzu" }).length, 0);
+});
+
+test("maltipoo, then girls, then korean teacup, then clearing maltipoo gives 6, 4, 1, 4", () => {
+  assert.equal(getPuppies({ breed: "maltipoo" }).length, 6);
+  assert.equal(getPuppies({ breed: "maltipoo", gender: "female" }).length, 4);
+  assert.equal(getPuppies({ breed: "maltipoo", gender: "female", collection: "korean-teacup" }).length, 1);
+  assert.equal(getPuppies({ gender: "female", collection: "korean-teacup" }).length, 4);
+});
+
 test("getPuppy returns undefined for an unknown slug", () => {
   assert.equal(getPuppy("maltipoo-max-male")?.name, "Max");
   assert.equal(getPuppy("no-such-puppy"), undefined);

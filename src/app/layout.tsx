@@ -23,7 +23,10 @@ const shantell = Shantell_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "TeddyPups U.A.E. — Premium teacup puppies in Dubai",
+  title: {
+    default: "TeddyPups U.A.E. — Premium teacup puppies in Dubai",
+    template: "%s | TeddyPups U.A.E.",
+  },
   description:
     "Teddy bear and teacup puppies in Dubai. Meet local puppies in our Downtown Dubai showroom or bring home a rare breed imported from trusted breeders.",
 };

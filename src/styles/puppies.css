@@ -1,0 +1,386 @@
+/* Puppy sketch card: a photo inside a hand-drawn frame from Teddy's sketchbook */
+.tp-sketch {
+  text-align: center;
+  border-radius: 1rem;
+  outline: none;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.tp-sketch__frame {
+  aspect-ratio: 1;
+  rotate: var(--tilt);
+  transition: rotate .6s var(--ease-pounce), scale .35s var(--ease-pounce);
+  display: block;
+  position: relative;
+}
+
+.tp-sketch__wash {
+  width: 100%;
+  height: 100%;
+  fill: var(--wash);
+  opacity: .55;
+  position: absolute;
+  inset: 0;
+}
+
+.tp-sketch__photo {
+  background: var(--color-honey-soft);
+  display: block;
+  position: absolute;
+  inset: 4.5%;
+  overflow: hidden;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.tp-sketch__photo img {
+  transition: scale .45s var(--ease-silk);
+}
+
+.tp-sketch__ink {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.tp-sketch__line {
+  fill: none;
+  stroke: var(--color-cocoa);
+  stroke-width: 1.9px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke .3s;
+}
+
+.tp-sketch__line--retrace {
+  stroke-width: 1.2px;
+  opacity: .55;
+}
+
+.tp-sketch__doodle {
+  transform-box: fill-box;
+  transform-origin: 50%;
+}
+
+.tp-sketch__sticker {
+  z-index: 2;
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 999px;
+  padding: .05rem .7rem .15rem;
+  font-size: .9rem;
+  position: absolute;
+  top: 8%;
+  right: -.2rem;
+  rotate: 8deg;
+  box-shadow: 2px 3px #2a170e33;
+}
+
+.tp-sketch__video {
+  z-index: 2;
+  color: var(--color-milk);
+  background: #2a170ed1;
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  font-size: .74rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 9%;
+  left: 9%;
+}
+
+.tp-sketch__name {
+  margin-top: 1rem;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  line-height: 1.02;
+  transition: color .25s;
+  display: block;
+}
+
+.tp-sketch__meta {
+  color: var(--color-cocoa-soft);
+  margin-top: .35rem;
+  font-size: .9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__frame {
+  rotate: calc(var(--tilt) * -1);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__photo img {
+  scale: 1.06;
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__line {
+  stroke: var(--color-toffee-deep);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__doodle {
+  animation: tp-doodle-hop .5s var(--ease-pounce);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__name {
+  color: var(--color-toffee-deep);
+}
+
+.tp-sketch:focus-visible .tp-sketch__line {
+  stroke-width: 3px;
+}
+
+.tp-sketch:active .tp-sketch__frame {
+  scale: .96;
+}
+
+@keyframes tp-doodle-hop {
+  40% {
+    rotate: 12deg;
+    scale: 1.35;
+  }
+}
+
+/* Gone-home variant of the sketch card */
+.tp-sketch__sticker--home {
+  border-color: var(--color-toffee-deep);
+  color: var(--color-toffee-deep);
+  white-space: nowrap;
+  font-size: .78rem;
+  inset: auto auto -.4rem 50%;
+  translate: -50%;
+  rotate: -6deg;
+}
+
+.tp-sketch--small .tp-sketch__name {
+  margin-top: .7rem;
+  font-size: 1.15rem;
+}
+
+/* "Already gone home" strip */
+.tp-gone-strip {
+  background: radial-gradient(circle at 1px 1px, #2a170e14 1px, transparent 1.6px) 0 0 / 26px 26px, var(--color-honey-soft);
+  padding-block: clamp(4rem, 9vh, 6rem);
+}
+
+.tp-gone-strip__row {
+  flex: 1;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 2rem 1.5rem;
+  display: grid;
+}
+
+.tp-gone-strip__row .tp-sketch__photo {
+  filter: saturate(.75) sepia(.12);
+}
+
+@media (max-width: 639px) {
+  .tp-sketch__sticker {
+    padding: 0 .5rem .1rem;
+    font-size: .74rem;
+  }
+
+  .tp-sketch__sticker:not(.tp-sketch__sticker--home) {
+    top: 4%;
+  }
+
+  .tp-sketch__video {
+    font-size: .66rem;
+  }
+}
+
+/* Filter sketchpad: a taped-down card holding the sticker chips */
+.tp-sketchpad {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  border-radius: 1.2rem 1.6rem 1.3rem 1.5rem;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem) clamp(1.1rem, 2.6vw, 1.75rem);
+  position: relative;
+  rotate: -.35deg;
+  box-shadow: 5px 7px #2a170e1f;
+}
+
+.tp-sketchpad::before {
+  content: "";
+  background: color-mix(in oklab, var(--color-honey) 55%, white);
+  opacity: .85;
+  width: 5.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: -.85rem;
+  left: 2.2rem;
+  rotate: -4deg;
+  box-shadow: 0 1px 2px #2a170e26;
+}
+
+.tp-sticker-chip {
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  min-height: 2.75rem;
+  transition: background-color .25s, color .25s, rotate .35s var(--ease-pounce), translate .35s var(--ease-pounce), box-shadow .25s;
+  border-radius: 999px;
+  padding: .45rem 1rem;
+  font-size: .95rem;
+  font-weight: 650;
+  box-shadow: 2px 3px #2a170e24;
+}
+
+.tp-sticker-chip:hover {
+  background: var(--color-honey-soft);
+  translate: 0 -1px;
+}
+
+.tp-sticker-chip:active {
+  translate: 0 1px;
+  box-shadow: 0 0 #2a170e24;
+}
+
+.tp-sticker-chip[aria-pressed="true"] {
+  background: var(--color-cocoa);
+  color: var(--color-milk);
+  rotate: -2deg;
+  box-shadow: 1px 2px #2a170e40;
+}
+
+.link-ink {
+  color: var(--color-toffee-ink);
+  text-underline-offset: .2em;
+  text-decoration: underline color-mix(in oklab, var(--color-toffee) 55%, transparent);
+  text-decoration-thickness: 2px;
+}
+
+.link-ink:hover {
+  text-decoration-color: currentColor;
+}
+
+/* /puppies: Teddy's sketchbook header and the sketch grid */
+@utility text-giant {
+  font-size: clamp(3.1rem, 9.4vw, 9.75rem);
+}
+
+.tp-sketchbook {
+  background: radial-gradient(circle at 1px 1px, #2a170e17 1px, transparent 1.6px) 0 0 / 26px 26px, linear-gradient(180deg, #fff8ec, var(--color-milk) 60%);
+}
+
+.tp-sketchbook__head {
+  align-items: end;
+  gap: 2rem 3rem;
+  display: grid;
+}
+
+.tp-sketchbook__title {
+  padding-bottom: .18em;
+  display: inline-block;
+  position: relative;
+}
+
+.tp-sketchbook__underline {
+  width: 100%;
+  height: .24em;
+  position: absolute;
+  bottom: -.05em;
+  left: 0;
+  overflow: visible;
+}
+
+.tp-sketchbook__underline path {
+  fill: none;
+  stroke: var(--color-toffee);
+  stroke-width: 7px;
+  stroke-linecap: round;
+}
+
+.tp-sketchbook__self {
+  aspect-ratio: 1;
+  border: 3px solid var(--color-cocoa);
+  background: color-mix(in oklab, var(--color-honey-soft) 70%, var(--color-milk));
+  border-radius: 52% 48% 50% 50% / 50% 52% 48% 50%;
+  justify-self: end;
+  width: clamp(9rem, 26vw, 13rem);
+  padding: 1.4rem 1.2rem .6rem;
+  position: relative;
+}
+
+.tp-sketchbook__self::after {
+  content: "";
+  pointer-events: none;
+  border: 2px solid #2a170e73;
+  border-radius: 48% 52% 47% 53% / 53% 47%;
+  position: absolute;
+  inset: -7px -4px -5px -6px;
+  rotate: -6deg;
+}
+
+/* The self-portrait faces left */
+.tp-sketchbook__teddy {
+  width: 100%;
+  height: auto;
+  display: block;
+  scale: -1 1;
+}
+
+.tp-sketchbook__caption {
+  white-space: nowrap;
+  color: var(--color-cocoa-soft);
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  translate: -50%;
+}
+
+@media (min-width: 768px) {
+  .tp-sketchbook__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .tp-sketchbook__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0 1rem;
+  }
+
+  .tp-sketchbook__words {
+    display: contents;
+  }
+
+  .tp-sketchbook__words > * {
+    grid-column: 1 / -1;
+  }
+
+  .tp-sketchbook__words > .tp-sketchbook__lede {
+    text-align: left;
+    grid-column: 1;
+    font-size: 1.0625rem;
+  }
+
+  .tp-sketchbook__self {
+    grid-column: 2;
+    width: clamp(7.5rem, 34vw, 9.5rem);
+    margin-top: 1.5rem;
+  }
+}
+
+.tp-sketches {
+  grid-template-columns: repeat(auto-fill, minmax(min(14.5rem, 40vw), 1fr));
+  gap: 3.25rem clamp(1.1rem, 3vw, 2.5rem);
+  padding-inline: .4rem;
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .tp-sketches {
+    padding-bottom: 2.4rem;
+  }
+
+  .tp-sketches > li:nth-child(2n) {
+    translate: 0 2.4rem;
+  }
+}
