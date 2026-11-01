@@ -2111,3 +2111,94 @@ html {
   translate: 0 -5px;
   rotate: 0deg;
 }
+
+/* Questions, answered */
+.tp-scene[data-tone=dark] .btn-ghost {
+  border-color: var(--color-milk);
+  color: var(--color-milk);
+}
+
+.tp-scene[data-tone=dark] .btn-ghost:hover {
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+}
+
+.tp-night {
+  padding-block: clamp(4.5rem,10vh,7rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.tp-night__stars {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.tp-night__grid {
+  gap: 3rem;
+  max-width: 110rem;
+  margin-inline: auto;
+  display: grid;
+  position: relative;
+}
+
+.tp-night__cta {
+  margin-top: 2rem;
+}
+
+.tp-night__pup {
+  width: clamp(9.5rem,30vw,13rem);
+  margin-top: 2.25rem;
+  position: relative;
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference), (pointer: coarse) and (max-height: 519px) and (prefers-reduced-motion: no-preference) {
+  .tp-night__pup {
+    display: none;
+  }
+}
+
+.tp-night__wonder {
+  color: var(--color-honey);
+  font-size: clamp(2.4rem,4vw,3.4rem);
+  line-height: 1;
+  position: absolute;
+  top: -2.4rem;
+  left: 58%;
+}
+
+.tp-night__list {
+  gap: clamp(2rem,4.5vh,3.25rem);
+  display: grid;
+}
+
+.tp-qa__q {
+  gap: .75rem;
+  font-size: clamp(1.4rem,2vw,1.95rem);
+  line-height: 1.12;
+  display: flex;
+}
+
+.tp-qa__star {
+  width: 1.15rem;
+  color: var(--color-honey);
+  flex: none;
+  margin-top: .3rem;
+}
+
+.tp-qa__a {
+  max-width: 58ch;
+  color: var(--ink-soft);
+  margin-top: .7rem;
+  padding-left: 1.9rem;
+}
+
+@media (min-width:1024px) {
+  .tp-night__grid {
+    grid-template-columns: minmax(0,5fr) minmax(0,7fr);
+    align-items: start;
+    column-gap: clamp(3rem,7vw,8rem);
+  }
+}
+
