@@ -3,17 +3,22 @@ import type { BreedSlug, Puppy } from "./types.ts";
 
 // Filter values usually come straight from search params, so they are plain strings.
 // As on the reference, an empty value means no filter and an unknown value matches nothing.
+// A "Boy & girl" listing matches both genders, and origin and collection combine.
 // Results keep reference order: /puppies order for available, /gone-home order for gone home.
 export function getPuppies({
   origin,
   breed,
+  gender,
+  collection,
   status = "available",
-}: { origin?: string; breed?: string; status?: Puppy["status"] } = {}) {
+}: { origin?: string; breed?: string; gender?: string; collection?: string; status?: Puppy["status"] } = {}) {
   return puppies.filter(
     (p) =>
       p.status === status &&
       (!origin || p.origin === origin) &&
-      (!breed || (p.breeds as string[]).includes(breed)),
+      (!breed || (p.breeds as string[]).includes(breed)) &&
+      (!gender || p.gender === gender || p.gender === "male-female") &&
+      (!collection || (p.collections as string[]).includes(collection)),
   );
 }
 
