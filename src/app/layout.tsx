@@ -10,11 +10,13 @@ const figtree = Figtree({
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const shantell = Shantell_Sans({
   variable: "--font-shantell",
   subsets: ["latin"],
+  axes: ["BNCE", "INFM"],
 });
 
 export const metadata: Metadata = {
