@@ -147,10 +147,46 @@
   }
 }
 
+/* Gone-home variant of the sketch card */
+.tp-sketch__sticker--home {
+  border-color: var(--color-toffee-deep);
+  color: var(--color-toffee-deep);
+  white-space: nowrap;
+  font-size: .78rem;
+  inset: auto auto -.4rem 50%;
+  translate: -50%;
+  rotate: -6deg;
+}
+
+.tp-sketch--small .tp-sketch__name {
+  margin-top: .7rem;
+  font-size: 1.15rem;
+}
+
+/* "Already gone home" strip */
+.tp-gone-strip {
+  background: radial-gradient(circle at 1px 1px, #2a170e14 1px, transparent 1.6px) 0 0 / 26px 26px, var(--color-honey-soft);
+  padding-block: clamp(4rem, 9vh, 6rem);
+}
+
+.tp-gone-strip__row {
+  flex: 1;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 2rem 1.5rem;
+  display: grid;
+}
+
+.tp-gone-strip__row .tp-sketch__photo {
+  filter: saturate(.75) sepia(.12);
+}
+
 @media (max-width: 639px) {
   .tp-sketch__sticker {
     padding: 0 .5rem .1rem;
     font-size: .74rem;
+  }
+
+  .tp-sketch__sticker:not(.tp-sketch__sticker--home) {
     top: 4%;
   }
 

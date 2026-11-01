@@ -46,10 +46,13 @@ export function PuppySketch({
   puppy,
   sizes = "(min-width: 1536px) 17rem, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw",
   preload = false,
+  small = false,
 }: {
   puppy: Puppy;
   sizes?: string;
   preload?: boolean;
+  // The gone-home strip: smaller, with a "gone home" sticker and no meta line.
+  small?: boolean;
 }) {
   const s = sketchFor(puppy.slug);
   const cover = puppy.media[0];
@@ -58,7 +61,7 @@ export function PuppySketch({
   return (
     <Link
       href={`/puppies/${puppy.slug}`}
-      className="tp-sketch"
+      className={`tp-sketch${small ? " tp-sketch--small" : ""}`}
       style={{ "--tilt": `${s.tilt.toFixed(2)}deg`, "--wash": s.wash.colour } as React.CSSProperties}
       aria-label={label}
     >
@@ -81,15 +84,23 @@ export function PuppySketch({
             <SketchDoodle key={i} doodle={d} />
           ))}
         </svg>
-        <span className="tp-sketch__sticker font-scrawl">{status}</span>
-        {puppy.media.some((m) => m.kind === "video") && <span className="tp-sketch__video">▶ video</span>}
+        {small ? (
+          <span className="tp-sketch__sticker tp-sketch__sticker--home font-scrawl">gone home ♥</span>
+        ) : (
+          <>
+            <span className="tp-sketch__sticker font-scrawl">{status}</span>
+            {puppy.media.some((m) => m.kind === "video") && <span className="tp-sketch__video">▶ video</span>}
+          </>
+        )}
       </span>
       <span className="tp-sketch__name font-plush">{puppy.displayName}</span>
-      <span className="tp-sketch__meta">
-        {puppy.name ? `${puppy.breed} · ` : ""}
-        {puppy.genderLabel.toLowerCase()}
-        {puppy.age ? ` · ${puppy.age}` : ""}
-      </span>
+      {!small && (
+        <span className="tp-sketch__meta">
+          {puppy.name ? `${puppy.breed} · ` : ""}
+          {puppy.genderLabel.toLowerCase()}
+          {puppy.age ? ` · ${puppy.age}` : ""}
+        </span>
+      )}
     </Link>
   );
 }
