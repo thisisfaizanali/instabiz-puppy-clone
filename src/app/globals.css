@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-toffee: #c2622b;
+  --color-toffee-deep: #a24a1a;
+  --color-toffee-ink: #8e3f15;
+  --color-honey: #f2be6b;
+  --color-honey-soft: #fbe3b4;
+  --color-cocoa: #2a170e;
+  --color-cocoa-soft: #5a3a28;
+  --color-milk: #fffdf8;
+  --color-blush: #f9cdbf;
+}
+
+body {
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+}
