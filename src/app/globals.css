@@ -23,6 +23,7 @@
 @layer base {
   :root {
     --gutter: clamp(1rem, 4vw, 3.5rem);
+    --bar-h: 0px;
     accent-color: var(--color-toffee-deep);
   }
 
@@ -141,6 +142,7 @@ body {
 @media (max-width: 767px) {
   :root {
     --header-h: 4rem;
+    --bar-h: calc(4rem + env(safe-area-inset-bottom));
   }
 }
 
