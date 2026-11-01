@@ -329,3 +329,27 @@ html {
     display: inline;
   }
 }
+
+/* Mobile menu */
+.tp-menu[open] {
+  animation: tp-menu-in 0.5s var(--ease-snap);
+}
+
+.tp-menu-link[data-active="true"] {
+  color: var(--color-toffee-deep);
+}
+
+@keyframes tp-menu-in {
+  from {
+    clip-path: circle(0% at calc(100% - 3rem) 2rem);
+  }
+  to {
+    clip-path: circle(150% at calc(100% - 3rem) 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-menu[open] {
+    animation: none;
+  }
+}

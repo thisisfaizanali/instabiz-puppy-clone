@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
+import { MobileMenu } from "./mobile-menu";
 
 export function Paw({ className }: { className?: string }) {
   return (
@@ -75,6 +76,7 @@ export function SiteHeader() {
           >
             WhatsApp us
           </a>
+          <MobileMenu />
         </div>
       </div>
       <svg aria-hidden="true" className="tp-header__hem" width="100%" height="14" preserveAspectRatio="none">
