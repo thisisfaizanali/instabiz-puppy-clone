@@ -491,63 +491,6 @@
   margin-top: 1.25rem;
 }
 
-.tp-flight {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  overflow: visible;
-}
-
-.tp-flight__route {
-  fill: none;
-  stroke: var(--color-toffee-deep);
-  stroke-width: 3px;
-  stroke-dasharray: 3 11;
-  stroke-linecap: round;
-}
-
-.tp-flight__dot {
-  fill: var(--color-toffee-deep);
-}
-
-.tp-flight__label {
-  font-family: var(--font-hand);
-  fill: var(--ink-soft);
-  font-size: 19px;
-}
-
-.tp-flight__body {
-  fill: var(--color-milk);
-  stroke: var(--color-cocoa);
-  stroke-width: 4px;
-  stroke-linejoin: round;
-}
-
-.tp-flight__wing {
-  fill: var(--color-toffee);
-  stroke: var(--color-cocoa);
-  stroke-width: 4px;
-  stroke-linejoin: round;
-}
-
-.tp-flight__wing--far {
-  fill: var(--color-toffee-deep);
-}
-
-.tp-flight__line {
-  fill: none;
-  stroke: var(--color-cocoa);
-  stroke-width: 3.5px;
-  stroke-linecap: round;
-}
-
-.tp-flight__porthole {
-  fill: none;
-  stroke: var(--color-cocoa);
-  stroke-width: 4px;
-}
-
 @media (min-width:1024px) {
   .tp-fork {
     grid-template-columns: 1fr 1fr;
@@ -587,13 +530,6 @@
     left: 50%;
     translate: -46%;
   }
-}
-
-.tp-flight > svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
 }
 
 /* Your puppy journey */
