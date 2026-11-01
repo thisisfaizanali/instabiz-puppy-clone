@@ -1,23 +1,4 @@
 /* Home scenes */
-.tp-scene {
-  --ink: var(--color-cocoa);
-  --ink-soft: var(--color-cocoa-soft);
-  color: var(--ink);
-  background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
-  position: relative;
-}
-
-.tp-scene[data-tone=dark] {
-  --ink: var(--color-milk);
-  --ink-soft: #fffdf8cc;
-}
-
-@supports (color:color-mix(in lab, red, red)) {
-  .tp-scene[data-tone=dark] {
-    --ink-soft: color-mix(in oklab, var(--color-milk) 80%, transparent);
-  }
-}
-
 .pup-stop {
   pointer-events: none;
 }
