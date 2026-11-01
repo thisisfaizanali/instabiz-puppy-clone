@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { validateEnquiry } from "./enquiry.ts";
+import { resendConfig, validateEnquiry } from "./enquiry.ts";
 
 const valid = {
   name: "Aisha",
@@ -56,4 +56,18 @@ test("overlong message, name and area", () => {
   assert.ok(!check.ok);
   assert.deepEqual(Object.keys(check.errors).sort(), ["area", "message", "name"]);
   assert.ok(validateEnquiry({ ...valid, message: "x".repeat(2000) }).ok);
+});
+
+test("resend is configured only with both variables, and warns when just one is set", () => {
+  assert.deepEqual(resendConfig({ RESEND_API_KEY: "re_test", ENQUIRY_TO_EMAIL: "team@example.com" }), {
+    ok: true,
+    key: "re_test",
+    to: "team@example.com",
+  });
+  assert.deepEqual(resendConfig({}), { ok: false });
+  assert.deepEqual(resendConfig({ RESEND_API_KEY: " ", ENQUIRY_TO_EMAIL: "" }), { ok: false });
+  const noTo = resendConfig({ RESEND_API_KEY: "re_test" });
+  assert.ok(!noTo.ok && noTo.warning?.includes("ENQUIRY_TO_EMAIL"));
+  const noKey = resendConfig({ ENQUIRY_TO_EMAIL: "team@example.com" });
+  assert.ok(!noKey.ok && noKey.warning?.includes("RESEND_API_KEY"));
 });

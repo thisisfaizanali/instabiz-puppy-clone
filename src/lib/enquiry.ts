@@ -56,3 +56,16 @@ export function validateEnquiry(raw: Record<string, unknown>): EnquiryCheck {
 
   return Object.keys(errors).length ? { ok: false, errors } : { ok: true, enquiry, spam: false };
 }
+
+// Delivery is configured only when both Resend variables are set. With one missing,
+// enquiries are logged instead, and the warning names what's missing.
+export function resendConfig(env: Record<string, string | undefined>):
+  | { ok: true; key: string; to: string }
+  | { ok: false; warning?: string } {
+  const key = env.RESEND_API_KEY?.trim();
+  const to = env.ENQUIRY_TO_EMAIL?.trim();
+  if (key && to) return { ok: true, key, to };
+  if (!key && !to) return { ok: false };
+  const missing = key ? "ENQUIRY_TO_EMAIL" : "RESEND_API_KEY";
+  return { ok: false, warning: `Enquiry email is not fully configured (${missing} is missing), so enquiries are only logged.` };
+}
