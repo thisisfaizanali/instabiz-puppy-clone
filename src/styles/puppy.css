@@ -1,0 +1,18 @@
+/* The "Message received!" card flips down into place */
+.tp-sent {
+  transform-origin: 50% 0;
+  animation: tp-sent-flip .7s var(--ease-pounce) both;
+}
+
+@keyframes tp-sent-flip {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-80deg) translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-sent {
+    animation: none;
+  }
+}
