@@ -10,6 +10,10 @@
   --color-cocoa-soft: #5a3a28;
   --color-milk: #fffdf8;
   --color-blush: #f9cdbf;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-hand: var(--font-shantell), ui-rounded, "Comic Sans MS", cursive;
 }
 
 body {
