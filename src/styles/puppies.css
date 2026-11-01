@@ -1,0 +1,160 @@
+/* Puppy sketch card: a photo inside a hand-drawn frame from Teddy's sketchbook */
+.tp-sketch {
+  text-align: center;
+  border-radius: 1rem;
+  outline: none;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.tp-sketch__frame {
+  aspect-ratio: 1;
+  rotate: var(--tilt);
+  transition: rotate .6s var(--ease-pounce), scale .35s var(--ease-pounce);
+  display: block;
+  position: relative;
+}
+
+.tp-sketch__wash {
+  width: 100%;
+  height: 100%;
+  fill: var(--wash);
+  opacity: .55;
+  position: absolute;
+  inset: 0;
+}
+
+.tp-sketch__photo {
+  background: var(--color-honey-soft);
+  display: block;
+  position: absolute;
+  inset: 4.5%;
+  overflow: hidden;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.tp-sketch__photo img {
+  transition: scale .45s var(--ease-silk);
+}
+
+.tp-sketch__ink {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.tp-sketch__line {
+  fill: none;
+  stroke: var(--color-cocoa);
+  stroke-width: 1.9px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke .3s;
+}
+
+.tp-sketch__line--retrace {
+  stroke-width: 1.2px;
+  opacity: .55;
+}
+
+.tp-sketch__doodle {
+  transform-box: fill-box;
+  transform-origin: 50%;
+}
+
+.tp-sketch__sticker {
+  z-index: 2;
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 999px;
+  padding: .05rem .7rem .15rem;
+  font-size: .9rem;
+  position: absolute;
+  top: 8%;
+  right: -.2rem;
+  rotate: 8deg;
+  box-shadow: 2px 3px #2a170e33;
+}
+
+.tp-sketch__video {
+  z-index: 2;
+  color: var(--color-milk);
+  background: #2a170ed1;
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  font-size: .74rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 9%;
+  left: 9%;
+}
+
+.tp-sketch__name {
+  margin-top: 1rem;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  line-height: 1.02;
+  transition: color .25s;
+  display: block;
+}
+
+.tp-sketch__meta {
+  color: var(--color-cocoa-soft);
+  margin-top: .35rem;
+  font-size: .9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__frame {
+  rotate: calc(var(--tilt) * -1);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__photo img {
+  scale: 1.06;
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__line {
+  stroke: var(--color-toffee-deep);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__doodle {
+  animation: tp-doodle-hop .5s var(--ease-pounce);
+}
+
+.tp-sketch:is(:hover, :focus-visible) .tp-sketch__name {
+  color: var(--color-toffee-deep);
+}
+
+.tp-sketch:focus-visible .tp-sketch__line {
+  stroke-width: 3px;
+}
+
+.tp-sketch:active .tp-sketch__frame {
+  scale: .96;
+}
+
+@keyframes tp-doodle-hop {
+  40% {
+    rotate: 12deg;
+    scale: 1.35;
+  }
+}
+
+@media (max-width: 639px) {
+  .tp-sketch__sticker {
+    padding: 0 .5rem .1rem;
+    font-size: .74rem;
+    top: 4%;
+  }
+
+  .tp-sketch__video {
+    font-size: .66rem;
+  }
+}
