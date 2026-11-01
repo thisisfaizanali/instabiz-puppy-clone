@@ -1,4 +1,12 @@
-export type BreedSlug = "maltipoo" | "pomeranian" | "poodle" | "cavapoo" | "shih-tzu";
+export type BreedSlug =
+  | "maltipoo"
+  | "pomeranian"
+  | "poodle"
+  | "cavapoo"
+  | "shih-tzu"
+  | "maltese"
+  | "bichon"
+  | "pomsky";
 
 export type Breed = {
   slug: BreedSlug;
@@ -38,12 +46,13 @@ export type Puppy = {
   // Breed as displayed on the detail page, e.g. "Korean Teacup Maltipoo".
   breed: string;
   gender: "male" | "female" | "male-female";
+  // Empty when the detail page shows no "Boy or girl" row.
   genderLabel: string;
   // Free text, e.g. "2.5 months" or "3 months Maltipoo & 2 months Cavapoo".
   age: string;
   colour: string;
   description: string;
-  status: "available";
+  status: "available" | "gone-home";
   // The first item is the cover photo.
   media: Media[];
   origin: Origin;
@@ -51,14 +60,12 @@ export type Puppy = {
   breeds: BreedSlug[];
 };
 
-export type GoneHomePuppy = {
-  // Links to /puppies/[slug].
-  slug: string;
-  name: string;
+// Extra fields shown on a /gone-home ticket. The ticket name and photo come from
+// the puppy record (displayName and media[0]).
+export type GoneHomeTicket = {
   // Ticket subtitle, e.g. "Pomeranian, boy", or just "Boy" when name is the breed.
   meta: string;
   from: "TeddyPups" | "Dubai showroom";
-  photo: Pick<Media, "url" | "alt" | "focalX" | "focalY" | "color">;
 };
 
 export type Testimonial = {
