@@ -917,3 +917,65 @@ html {
   opacity: 1;
   translate: var(--tag-x, -50%) -12%;
 }
+
+/* Meet the pups */
+.tp-meet__stage {
+  padding-top: clamp(4rem,9vh,7rem);
+  padding-bottom: clamp(3rem,7vh,5rem);
+  position: relative;
+}
+
+.tp-meet__head {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.25rem 2rem;
+  width: 100%;
+  max-width: 110rem;
+  margin-inline: auto;
+  display: flex;
+}
+
+.tp-meet__hall {
+  margin-top: clamp(2rem,5vh,3.5rem);
+  position: relative;
+}
+
+.tp-meet__track {
+  padding-inline: var(--gutter);
+  grid-template-columns: repeat(auto-fill,minmax(min(10.5rem,42vw),1fr));
+  gap: 2.75rem 1.25rem;
+  max-width: 110rem;
+  margin-inline: auto;
+  display: grid;
+}
+
+.tp-meet__teddy {
+  right: var(--gutter);
+  width: clamp(8rem,26vw,11rem);
+  position: absolute;
+  top: clamp(-9.5rem,-20vw,-6rem);
+}
+
+@media (min-width:640px) {
+  .tp-meet__track {
+    gap: 3.5rem 2rem;
+  }
+}
+
+.tp-door__frame--all {
+  background: 0 0;
+  border-style: dashed;
+  place-items: center;
+  display: grid;
+}
+
+.tp-door--all {
+  align-self: stretch;
+  align-items: flex-end;
+  display: flex;
+}
+
+.tp-door--all .tp-door__link {
+  width: 100%;
+}
