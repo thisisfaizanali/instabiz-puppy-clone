@@ -1,0 +1,103 @@
+/* /happy-families: the wall of happy endings. Polaroid and tape styles are shared from components.css. */
+.tp-memories {
+  background:
+    repeating-linear-gradient(90deg, #0000 0 46px, #c2622b0b 46px 48px),
+    radial-gradient(70% 40% at 50% 0, #ffd68c73, #0000 70%),
+    linear-gradient(#fff3df, #fbe9cc 60%, #f7e0bd);
+}
+
+.tp-memories__head {
+  align-items: end;
+  gap: 2.5rem 4rem;
+  display: grid;
+}
+
+@media (min-width: 1024px) {
+  .tp-memories__head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+  }
+}
+
+.tp-memories__title {
+  line-height: 1.06;
+}
+
+.tp-memories__heart {
+  width: .42em;
+  color: var(--color-toffee);
+  margin-left: .25em;
+  display: inline-block;
+  translate: 0 -.12em;
+}
+
+/* The testimonial on lined notepaper */
+.tp-memories__note {
+  background: linear-gradient(#0000 1.55rem, #2f6e9e21 1.55rem 1.6rem) 0 .4rem / 100% 1.6rem, #fffdf6;
+  border-radius: .3rem;
+  padding: 1.6rem 1.5rem 1.2rem;
+  position: relative;
+  rotate: 1.4deg;
+  box-shadow: 0 8px 18px -8px #2a170e59;
+}
+
+.tp-memories__note blockquote {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.6rem;
+}
+
+.tp-memories__note figcaption {
+  color: var(--color-toffee-ink);
+  margin-top: .8rem;
+}
+
+.tp-wall {
+  columns: 10.5rem 2;
+  column-gap: clamp(1rem, 3vw, 2.6rem);
+}
+
+@media (min-width: 768px) {
+  .tp-wall {
+    columns: 3;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tp-wall {
+    columns: 4;
+  }
+}
+
+.tp-wall__item {
+  break-inside: avoid;
+  padding: 1.1rem .35rem clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.tp-wall__print {
+  width: 100%;
+  text-align: inherit;
+  background: none;
+  border: 0;
+  border-radius: .3rem;
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+.tp-wall__print:is(:hover, :focus-visible) .tp-polaroid {
+  translate: 0 -6px;
+  rotate: 0deg;
+  box-shadow: 0 1px 1px #2a170e1f, 0 18px 30px -14px #2a170e6b;
+}
+
+.tp-wall__print:active .tp-polaroid {
+  translate: 0 -2px;
+}
+
+.tp-memories__foot {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: .5rem 1.5rem;
+  margin-top: clamp(2rem, 6vh, 4rem);
+  display: flex;
+}
