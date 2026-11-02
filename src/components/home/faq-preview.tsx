@@ -28,8 +28,14 @@ export function FaqPreview() {
       aria-labelledby="questions-title"
     >
       <div aria-hidden="true" className="pointer-events-none tp-night__stars">
-        {stars.map((star) => (
-          <svg key={star.left} viewBox="0 0 40 40" className="absolute text-honey" style={star} aria-hidden="true">
+        {stars.map((star, i) => (
+          <svg
+            key={star.left}
+            viewBox="0 0 40 40"
+            className="tp-twinkle absolute text-honey"
+            style={{ ...star, animationDelay: `${(i * 0.4).toFixed(2)}s` }}
+            aria-hidden="true"
+          >
             <path d={starPath} fill="currentColor" />
           </svg>
         ))}
