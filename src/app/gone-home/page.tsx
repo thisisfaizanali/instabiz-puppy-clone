@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import Link from "next/link";
 import { GoneHomeTicket } from "@/components/gone-home/gone-home-ticket";
 import { goneHomeTickets } from "@/data/gone-home";
@@ -42,8 +42,7 @@ export default function GoneHomePage() {
           </Link>
         </div>
         <div aria-hidden="true" className="tp-booth">
-          {/* Not a <Teddy> resting spot: those hide on small screens, but the booth keeps its teddy. */}
-          <Image src="/teddy/peek.svg" alt="" width={300} height={240} unoptimized className="tp-booth__teddy h-auto" />
+          <PupBuddy pose="peek" className="tp-booth__teddy" />
           <div className="tp-booth__counter">
             <span className="font-plush">tickets home</span>
           </div>

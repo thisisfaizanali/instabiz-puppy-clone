@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import { GoneHomeStrip } from "@/components/puppies/gone-home-strip";
@@ -46,15 +46,7 @@ export default function PuppiesPage() {
               </p>
             </div>
             <div className="tp-sketchbook__self" data-reveal>
-              <Image
-                src="/teddy/sit.svg"
-                alt="Teddy, the TeddyPups puppy"
-                width={300}
-                height={240}
-                unoptimized
-                loading="eager"
-                className="tp-sketchbook__teddy"
-              />
+              <PupBuddy pose="sit" facing="left" label="Teddy, the TeddyPups puppy" />
               <span className="font-scrawl tp-sketchbook__caption">self-portrait</span>
             </div>
           </div>

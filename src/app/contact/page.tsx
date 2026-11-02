@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { LetterForm } from "@/components/contact/letter-form";
 import { Shopfront } from "@/components/contact/shopfront";
 import { pageMetadata } from "@/lib/metadata";
@@ -43,14 +43,7 @@ export default function ContactPage() {
           <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
               <LetterForm puppies={puppies} whatsappHref={site.whatsapp} />
-              <Image
-                src="/teddy/sit.svg"
-                alt="Teddy, waiting for your letter"
-                width={300}
-                height={240}
-                unoptimized
-                className="ml-auto mr-6 -mt-3 block h-auto w-36 -scale-x-100 md:w-40"
-              />
+              <PupBuddy pose="sit" facing="left" className="ml-auto mr-6 -mt-3 w-36 md:w-40" label="Teddy, waiting for your letter" />
             </div>
             <div className="lg:col-span-5 lg:row-start-1">
               <Shopfront />

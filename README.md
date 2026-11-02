@@ -69,7 +69,6 @@ src/
 public/
   brand/        logo (also the share image)
   media/        puppy and family photos and videos
-  teddy/        mascot poses
 ```
 
 ## Deploying to Vercel

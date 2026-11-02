@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { RevealScope } from "@/components/reveal-scope";
 import { FamilyPhotoWall } from "@/components/happy-families/family-photo-wall";
 import { familyPhotos, testimonial } from "@/data/happy-families";
@@ -50,15 +50,7 @@ export default function HappyFamiliesPage() {
             <FamilyPhotoWall photos={familyPhotos} />
           </div>
           <div className="tp-memories__foot">
-            {/* Mirrored to face the wall. Not a <Teddy> resting spot, which would hide on small screens. */}
-            <Image
-              src="/teddy/sit.svg"
-              alt="Teddy, admiring the wall"
-              width={300}
-              height={240}
-              unoptimized
-              className="h-auto w-36 -scale-x-100 md:w-44"
-            />
+            <PupBuddy pose="sit" facing="left" className="w-36 md:w-44" label="Teddy, admiring the wall" />
             <p className="font-scrawl text-lg text-cocoa-soft">every one of them was a Teddy Pup once</p>
           </div>
         </div>

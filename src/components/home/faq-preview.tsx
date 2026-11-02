@@ -52,7 +52,7 @@ export function FaqPreview() {
             <span aria-hidden="true" className="tp-night__wonder font-plush">
               ?
             </span>
-            <Teddy pose="sit" className="tp-night__teddy" />
+            <Teddy pose="sit" act="tilt" className="tp-night__teddy" />
           </div>
         </div>
         <dl className="tp-night__list">

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { Fragment, useId, useState } from "react";
 import { AccordionItem } from "@/components/accordion";
 import type { FaqItem } from "@/lib/types";
@@ -62,7 +62,7 @@ export function NoticeBoard({ faqs, askHref }: { faqs: FaqItem[]; askHref: strin
             <span className="tp-notes__q">?</span>
             <span className="tp-notes__a">!</span>
           </span>
-          <Image src="/teddy/sit.svg" alt="Teddy, reading the notes" width={300} height={240} unoptimized className="block h-auto w-full" />
+          <PupBuddy pose="sit" label="Teddy, reading the notes" />
         </div>
         <a href={askHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp tp-notes__ask">
           Ask your own question

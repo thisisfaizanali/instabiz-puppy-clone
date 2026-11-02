@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { Skyline } from "@/components/flight";
 import { useTabs } from "@/components/tabs";
 
@@ -195,14 +195,7 @@ export function Journeys() {
               </button>
             ))}
           </div>
-          <Image
-            src="/teddy/sit.svg"
-            alt="Teddy, waiting to see which way you pick"
-            width={300}
-            height={240}
-            unoptimized
-            className="tp-journeys__teddy h-auto"
-          />
+          <PupBuddy pose="sit" className="tp-journeys__teddy" label="Teddy, waiting to see which way you pick" />
         </div>
       </div>
       {journeys.map((j) => (
