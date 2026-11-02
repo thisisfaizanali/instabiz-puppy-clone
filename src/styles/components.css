@@ -318,6 +318,43 @@
   border-radius: 50%;
 }
 
+@supports (animation-timeline:view()) {
+  .tp-stamp {
+    animation: linear both tp-stamp-in;
+    animation-timeline: view();
+    animation-range: entry calc(55% + var(--i) * 9%) cover calc(42% + var(--i) * 6%);
+  }
+}
+
+@keyframes tp-stamp-in {
+  0% {
+    opacity: 0;
+    scale: 1.7;
+    rotate: calc(var(--tilt) - 16deg);
+  }
+
+  55% {
+    opacity: .95;
+    scale: .93;
+  }
+
+  75% {
+    scale: 1.03;
+  }
+
+  to {
+    opacity: .9;
+    scale: 1;
+    rotate: var(--tilt);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .tp-stamp {
+    animation: none !important;
+  }
+}
+
 .tp-stamp--scallop {
   border-style: dotted;
   border-width: 5px;
