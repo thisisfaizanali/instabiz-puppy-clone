@@ -830,6 +830,30 @@
   display: flex;
 }
 
+.tp-msg-group[data-show=false] {
+  display: none;
+}
+
+.tp-msg-group > * {
+  animation: tp-msg-in .5s var(--ease-pounce) both;
+}
+
+.tp-msg-group > :nth-child(2) {
+  animation-delay: .18s;
+}
+
+.tp-msg-group > :nth-child(3) {
+  animation-delay: .36s;
+}
+
+@keyframes tp-msg-in {
+  0% {
+    opacity: 0;
+    translate: 0 .8rem;
+    scale: .92;
+  }
+}
+
 .tp-chips {
   flex-wrap: wrap;
   gap: .3rem;
@@ -942,6 +966,46 @@
 .tp-route__paw {
   fill: var(--color-toffee);
   opacity: .6;
+}
+
+.tp-typing {
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  border-radius: 1.05rem 1.05rem 1.05rem .25rem;
+  align-self: flex-start;
+  gap: .3rem;
+  padding: .7rem .85rem;
+  display: none;
+}
+
+.tp-typing[data-show=true] {
+  display: inline-flex;
+}
+
+.tp-typing span {
+  background: var(--color-cocoa);
+  border-radius: 50%;
+  width: .45rem;
+  height: .45rem;
+  animation: .9s ease-in-out infinite tp-dot;
+}
+
+.tp-typing span:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.tp-typing span:nth-child(3) {
+  animation-delay: .3s;
+}
+
+@keyframes tp-dot {
+  0%,60%,to {
+    translate: 0;
+  }
+
+  30% {
+    translate: 0 -.35rem;
+  }
 }
 
 .tp-phone__compose {
