@@ -26,6 +26,9 @@ export function Polaroid({ index, caption, children }: { index: number; caption:
   );
 }
 
+// The order the prints drop onto the wall in.
+const drops = [3, 0, 5, 1, 6, 2, 7, 4];
+
 // The first photos are pinned to the wall; the lightbox pages through all of them.
 export function FamilyWall({ photos }: { photos: Media[] }) {
   const [open, setOpen] = useState<number | null>(null);
@@ -33,7 +36,7 @@ export function FamilyWall({ photos }: { photos: Media[] }) {
     <>
       <ul className="tp-photowall__prints" aria-label="Photos from TeddyPups families">
         {photos.slice(0, 8).map((photo, i) => (
-          <li key={photo.url}>
+          <li key={photo.url} data-reveal style={{ "--d": `${110 * drops[i]}ms` } as React.CSSProperties}>
             <button
               type="button"
               className="tp-photowall__print"

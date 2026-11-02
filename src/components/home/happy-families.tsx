@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { RevealScope } from "@/components/reveal-scope";
 import { Teddy } from "@/components/teddy";
 import { familyPhotos, testimonial } from "@/data/happy-families";
 import { FamilyWall } from "./family-wall";
@@ -32,7 +33,7 @@ export function HappyFamilies() {
         </figure>
       </div>
       <div className="tp-photowall">
-        <div className="tp-photowall__wall">
+        <RevealScope className="tp-photowall__wall">
           <FamilyWall photos={photos} />
           <div className="tp-facade__ground">
             <span aria-hidden="true" className="tp-facade__door" />
@@ -44,7 +45,7 @@ export function HappyFamilies() {
             </Link>
             <Teddy pose="sit" className="tp-dusk__teddy" />
           </div>
-        </div>
+        </RevealScope>
         <div aria-hidden="true" className="tp-street__pavement" />
       </div>
     </section>
