@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Polaroid } from "@/components/home/family-wall";
 import { Lightbox } from "@/components/lightbox";
+import { Paw } from "@/components/paw";
 import type { Media } from "@/lib/types";
 
 // Every family photo as a polaroid in masonry columns; each opens the lightbox at that photo.
@@ -13,7 +14,12 @@ export function FamilyPhotoWall({ photos }: { photos: Media[] }) {
     <>
       <ul className="tp-wall" aria-label="Photos from TeddyPups families">
         {photos.map((photo, i) => (
-          <li key={photo.url} className="tp-wall__item">
+          <li
+            key={photo.url}
+            className="tp-wall__item"
+            data-reveal
+            style={{ "--d": `${(i % 4) * 60}ms` } as React.CSSProperties}
+          >
             <button
               type="button"
               className="tp-wall__print"
@@ -32,6 +38,7 @@ export function FamilyPhotoWall({ photos }: { photos: Media[] }) {
                   style={{ width: "100%", height: "auto", backgroundColor: photo.color }}
                 />
               </Polaroid>
+              <Paw className="tp-wall__paw" />
             </button>
           </li>
         ))}
