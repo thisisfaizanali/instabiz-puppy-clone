@@ -2,7 +2,7 @@
 
 A clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/), the TeddyPups U.A.E. puppy site, built as a technical assignment. It has the same eight page types as the reference (home, available puppies, puppy detail, gone home, happy families, how it works, FAQ, contact), the same content and closely matching behaviour, with the enquiry forms wired to email.
 
-Live URL: LIVE_URL_TBD
+Live site: [https://instabiz-puppy-clone.vercel.app/](https://instabiz-puppy-clone.vercel.app/)
 
 ## Tech stack
 
