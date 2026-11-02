@@ -365,7 +365,7 @@ function where(layout: Layout, scroll: number) {
   return placeAt(layout.stops, layout.holds, scroll, safeArea(layout), layout.blend);
 }
 
-export type PupCue = { look?: Element; secs?: number; say?: string };
+type PupCue = { look?: Element; secs?: number; say?: string };
 
 // Asks the travelling puppy, if he is resting in the scene that holds `look`, to glance at it and maybe say something.
 export function cuePup(cue: PupCue) {

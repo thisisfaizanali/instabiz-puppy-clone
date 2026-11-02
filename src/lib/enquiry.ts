@@ -12,10 +12,10 @@ export type Enquiry = {
   puppy: string;
 };
 
-export type EnquiryField = Exclude<keyof Enquiry, "puppy">;
+type EnquiryField = Exclude<keyof Enquiry, "puppy">;
 export type EnquiryErrors = Partial<Record<EnquiryField, string>>;
 
-export type EnquiryCheck =
+type EnquiryCheck =
   | { ok: true; enquiry: Enquiry; spam: false }
   // The hidden "website" field was filled in: a bot. Callers report success without sending.
   | { ok: true; spam: true }

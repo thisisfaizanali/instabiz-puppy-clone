@@ -12,7 +12,7 @@ const statusLabels: Record<Puppy["status"], string> = {
 };
 
 // "Max" gets "Maltipoo, boy, 3 months"; an unnamed puppy already shows its breed as the name.
-export function puppyMeta(puppy: Puppy) {
+function puppyMeta(puppy: Puppy) {
   return [
     puppy.name && puppy.breed,
     puppy.genderLabel.toLowerCase(),

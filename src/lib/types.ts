@@ -15,7 +15,7 @@ export type Breed = {
 
 export type Origin = "local" | "imported";
 
-export type CollectionSlug = "korean-teacup";
+type CollectionSlug = "korean-teacup";
 
 export type Collection = {
   slug: CollectionSlug;
