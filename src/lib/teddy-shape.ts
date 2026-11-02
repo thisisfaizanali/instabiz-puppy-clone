@@ -37,7 +37,6 @@ const hipF: [number, number] = [94, 192];
 const tailBase: [number, number] = [84, 150];
 const earLPivot: [number, number] = [174, 82];
 const earRPivot: [number, number] = [250, 82];
-export const joints = { shoulderN, shoulderF, hipN, hipF, tailBase };
 
 export const paths = {
   body: blob(140, 170, 64, 36, 15, 3.4, 0.95 * Math.PI),
@@ -128,7 +127,7 @@ export function mixPose(from: Pose, to: Pose, k: number): Pose {
 
 // What is moving on top of the pose: the walk cycle, the clock, the wag, where the eyes look, the blink and the ears.
 export const still = { phase: 0, stride: 0, time: 0, wag: 0, gazeX: 0, gazeY: 0, blink: 0, ear: 0 };
-export type Motion = typeof still;
+type Motion = typeof still;
 
 const r2 = (n: number) => Math.round(100 * n) / 100;
 const rotate = (deg: number, [x, y]: [number, number]) => `rotate(${r2(deg)} ${x} ${y})`;
