@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Paw } from "@/components/paw";
+import { PupBuddy } from "@/components/pup-buddy";
 import { RevealScope } from "@/components/reveal-scope";
 import { EnquiryForm } from "@/components/puppy/enquiry-form";
 import { PuppyGallery } from "@/components/puppy/puppy-gallery";
@@ -163,16 +164,11 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
             <RevealScope className="lg:sticky lg:top-[calc(var(--header-h)+5.5rem)]">
               <div className="tp-tag tp-board mt-16 !rounded-[2.2rem_2.2rem_2.2rem_0.6rem] !p-7 md:!p-9 lg:mt-20" data-reveal>
                 <span aria-hidden="true" className="tp-tag__ring" />
-                <div className="absolute -top-[4.8rem] right-6 w-[9.5rem]">
-                  <Image
-                    src="/teddy/peek.svg"
-                    alt={`Teddy, peeking over ${puppy.displayName}'s tag`}
-                    width={300}
-                    height={240}
-                    unoptimized
-                    className="block h-auto w-full"
-                  />
-                </div>
+                <PupBuddy
+                  pose="peek"
+                  className="absolute -top-[4.8rem] right-6 w-[9.5rem]"
+                  label={`Teddy, peeking over ${puppy.displayName}'s tag`}
+                />
                 {available ? (
                   <span className="chip">
                     <Paw className="size-4 text-toffee" />

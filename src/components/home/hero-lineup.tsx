@@ -148,6 +148,7 @@ export function HeroLineup({ friends }: { friends: Friend[] }) {
             <li key={i} className="tp-lineup__seat" style={seatStyle(i)}>
               <Link
                 className="tp-lineup__pup"
+                data-pup-friend
                 data-state={states[i]}
                 aria-label={`Meet ${friend.displayName}, ${friend.breed}`}
                 href={`/puppies/${friend.slug}`}

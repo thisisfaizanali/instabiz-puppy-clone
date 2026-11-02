@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { Teddy } from "./teddy";
 
 const explore = [
   { label: "Available puppies", href: "/puppies" },
@@ -66,8 +67,7 @@ export function SiteFooter() {
               <path d="M116 145 A96 12 0 0 1 308 145" className="tp-basket__rim-line" />
               <path d="M116 145 A96 12 0 0 1 308 145" className="tp-basket__rim" />
             </svg>
-            {/* Placeholder for the animated pup-buddy (later milestone) */}
-            <div className="tp-basket__pup" />
+            <Teddy pose="snug" act="basket" behind lane label="Teddy, sitting snug in his basket" className="tp-basket__pup" />
             <svg aria-hidden="true" viewBox="0 0 300 240" className="tp-basket__front">
               <path
                 d="M116 145 C118 180 126 214 138 232 L286 232 C298 214 306 180 308 145 A96 12 0 0 1 116 145 Z"

@@ -1,28 +1,35 @@
-import Image from "next/image";
+import type { PoseName } from "@/lib/teddy-shape";
+import { PupBuddy } from "./pup-buddy";
 
-// The TeddyPups mascot at one of its resting spots, drawn in a fixed pose.
+// One of Teddy's resting spots. The data attributes tell the travelling puppy how to sit here.
 export function Teddy({
   pose,
-  label = "",
-  className,
-  loading,
+  facing = "right",
+  act,
+  behind = false,
+  lane = false,
+  label,
+  className = "",
 }: {
-  pose: "peek" | "sit" | "bow";
+  pose: PoseName;
+  facing?: "left" | "right";
+  act?: string;
+  behind?: boolean;
+  lane?: boolean;
   label?: string;
-  className: string;
-  loading?: "eager";
+  className?: string;
 }) {
   return (
-    <div className={`pup-stop ${className}`}>
-      <Image
-        src={`/teddy/${pose}.svg`}
-        alt={label}
-        width={300}
-        height={240}
-        loading={loading}
-        unoptimized
-        className="block h-auto w-full"
-      />
+    <div
+      data-pup-stop
+      data-pose={pose}
+      data-facing={facing}
+      data-act={act}
+      data-behind={behind || undefined}
+      data-lane={lane || undefined}
+      className={`pup-stop ${className}`}
+    >
+      <PupBuddy pose={pose} facing={facing} label={label} asStop />
     </div>
   );
 }

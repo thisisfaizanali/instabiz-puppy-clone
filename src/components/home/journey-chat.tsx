@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { pawPath } from "@/components/paw";
+import { cuePup } from "@/components/pup-journey";
 import { showroomPhotos, showroomVideo } from "@/data/showroom";
 import { coverStyle } from "@/lib/media";
 import { useMediaQuery, useReducedMotion } from "@/lib/reduced-motion";
@@ -34,6 +35,7 @@ export function JourneyChat({ breeds, teddy }: { breeds: { slug: string; name: s
   const [typing, setTyping] = useState(false);
   const stepsRef = useRef<HTMLOListElement>(null);
   const seen = useRef(-1);
+  const phoneRef = useRef<HTMLDivElement>(null);
   const current = still ? steps.length - 1 : step;
 
   useEffect(() => {
@@ -55,7 +57,12 @@ export function JourneyChat({ breeds, teddy }: { breeds: { slug: string; name: s
     seen.current = step;
     if (!forward || step < 0) return;
     setTyping(true);
-    const timer = setTimeout(() => setTyping(false), 750);
+    const timer = setTimeout(() => {
+      setTyping(false);
+      // Teddy, resting by the phone, glances at the reply that just arrived.
+      const reply = phoneRef.current?.querySelector(`[data-step="${step}"]`);
+      if (reply) cuePup({ look: reply, secs: 1.4, say: step === 1 ? "ooh, photos!" : step === 2 ? "home soon!" : undefined });
+    }, 750);
     return () => clearTimeout(timer);
   }, [step, still]);
 
@@ -63,6 +70,7 @@ export function JourneyChat({ breeds, teddy }: { breeds: { slug: string; name: s
 
   return (
     <section
+      data-pup-scene
       data-tone="light"
       className="tp-scene tp-chat"
       style={{ "--sky-top": "#f7d18d", "--sky-bottom": "#f0b866" } as React.CSSProperties}
@@ -97,7 +105,7 @@ export function JourneyChat({ breeds, teddy }: { breeds: { slug: string; name: s
           </Link>
         </div>
         <div className="tp-chat__side">
-          <div className="tp-phone" aria-label={`A WhatsApp conversation with ${site.name}`} role="group">
+          <div ref={phoneRef} className="tp-phone" aria-label={`A WhatsApp conversation with ${site.name}`} role="group">
             <div className="tp-phone__bar">
               <Image src="/brand/logo.png" alt="" width={40} height={40} className="tp-phone__avatar" />
               <span>

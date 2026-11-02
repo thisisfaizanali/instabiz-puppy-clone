@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import { PuppySketch } from "@/components/puppy-sketch";
 import { getPuppies } from "@/lib/puppies";
 import { whatsappLink } from "@/lib/site";
@@ -27,9 +27,7 @@ export function PuppyListing() {
         </ul>
       ) : (
         <div className="tp-sketchpad mt-10 grid items-center gap-6 md:grid-cols-[auto_1fr] md:gap-10">
-          <div className="mx-auto w-44 md:w-52">
-            <Image src="/teddy/sit.svg" alt="Teddy, tilting his head" width={300} height={240} unoptimized className="block h-auto w-full" />
-          </div>
+          <PupBuddy pose="sit" act="tilt" className="mx-auto w-44 md:w-52" label="Teddy, tilting his head" />
           <div>
             <p className="font-plush text-big">No puppies match just now.</p>
             <p className="mt-3 max-w-[48ch] text-cocoa-soft">

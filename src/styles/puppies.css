@@ -333,14 +333,6 @@
   rotate: -6deg;
 }
 
-/* The self-portrait faces left */
-.tp-sketchbook__teddy {
-  width: 100%;
-  height: auto;
-  display: block;
-  scale: -1 1;
-}
-
 .tp-sketchbook__caption {
   white-space: nowrap;
   color: var(--color-cocoa-soft);

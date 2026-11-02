@@ -10,6 +10,7 @@ export function ClosingCta() {
   const cover = waiting.media[0];
   return (
     <section
+      data-pup-scene
       data-tone="dark"
       className="tp-scene tp-home"
       style={{ "--sky-top": "#2f1a10", "--sky-bottom": "#24130b" } as React.CSSProperties}

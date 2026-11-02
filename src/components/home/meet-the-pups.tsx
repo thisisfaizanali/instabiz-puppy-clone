@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { PuppyCard } from "@/components/puppy-card";
-import { Teddy } from "@/components/teddy";
 import { getPuppies } from "@/lib/puppies";
 import { MeetTreadmill } from "./meet-treadmill";
 
 export function MeetThePups() {
   return (
     <MeetTreadmill
+      data-pup-scene
       data-tone="light"
       className="tp-scene tp-meet"
       style={{ "--sky-top": "#fff1d8", "--sky-bottom": "#fbe3b4" } as React.CSSProperties}
@@ -26,7 +26,6 @@ export function MeetThePups() {
           </Link>
         </header>
       }
-      teddy={<Teddy pose="sit" className="tp-meet__teddy" />}
     >
       {getPuppies().map((puppy, i) => (
         <PuppyCard key={puppy.slug} puppy={puppy} index={i} />

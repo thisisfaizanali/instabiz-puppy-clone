@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import Link from "next/link";
 import { Flight, Skyline } from "@/components/flight";
 import { Journeys } from "@/components/how-it-works/journeys";
@@ -199,14 +199,7 @@ export default function HowItWorksPage() {
                 </Link>
               </div>
             </div>
-            <Image
-              src="/teddy/bow.svg"
-              alt="Teddy, ready to play"
-              width={300}
-              height={240}
-              unoptimized
-              className="mx-auto h-auto w-48 -scale-x-100 md:w-56"
-            />
+            <PupBuddy pose="bow" facing="left" className="mx-auto w-48 md:w-56" label="Teddy, ready to play" />
           </section>
         </div>
       </section>

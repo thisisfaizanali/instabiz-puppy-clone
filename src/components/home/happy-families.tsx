@@ -10,6 +10,7 @@ const photos = [...familyPhotos.filter((p) => p.caption), ...familyPhotos.filter
 export function HappyFamilies() {
   return (
     <section
+      data-pup-scene
       data-tone="dark"
       className="tp-scene tp-dusk"
       style={{ "--sky-top": "#a65a30", "--sky-bottom": "#4d2b19" } as React.CSSProperties}

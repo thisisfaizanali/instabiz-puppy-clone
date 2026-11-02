@@ -101,6 +101,12 @@
   left: 76%;
 }
 
+/* Teddy's own bubble takes over while he plays or talks. */
+:is(.tp-notes__teddy:has(> .pup-buddy[data-playing]) .tp-notes__bubble, .tp-notes__teddy:has(> .pup-buddy > .pup-bubble[data-show=true]) .tp-notes__bubble) {
+  opacity: 0;
+  scale: .4;
+}
+
 .tp-notes__bubble > span {
   transition: opacity .3s ease, scale .45s var(--ease-pounce);
   grid-area: 1 / 1;

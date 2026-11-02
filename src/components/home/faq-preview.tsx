@@ -22,6 +22,7 @@ const stars = [
 export function FaqPreview() {
   return (
     <section
+      data-pup-scene
       data-tone="dark"
       className="tp-scene tp-night"
       style={{ "--sky-top": "#4d2b19", "--sky-bottom": "#2f1a10" } as React.CSSProperties}
@@ -52,12 +53,12 @@ export function FaqPreview() {
             <span aria-hidden="true" className="tp-night__wonder font-plush">
               ?
             </span>
-            <Teddy pose="sit" className="tp-night__teddy" />
+            <Teddy pose="sit" act="tilt" className="tp-night__teddy" />
           </div>
         </div>
         <dl className="tp-night__list">
-          {faqs.slice(0, 3).map((faq) => (
-            <div key={faq.question} className="tp-qa">
+          {faqs.slice(0, 3).map((faq, i) => (
+            <div key={faq.question} className="tp-qa" data-pup-look={i < 2 ? "" : undefined}>
               <dt className="font-plush tp-qa__q">
                 <svg viewBox="0 0 40 40" className="tp-qa__star" aria-hidden="true">
                   <path d={starPath} fill="currentColor" />

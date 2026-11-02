@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PupBuddy } from "@/components/pup-buddy";
 import Link from "next/link";
 
 const tabs = [
@@ -20,14 +20,7 @@ export default function NotFound() {
           Lost<span className="sr-only">: this page has wandered off</span>
         </h1>
         <div className="tp-poster__photo">
-          <Image
-            src="/teddy/sit.svg"
-            alt="Teddy, sniffing out the missing page"
-            width={300}
-            height={240}
-            unoptimized
-            className="block h-auto w-full"
-          />
+          <PupBuddy pose="sniff" label="Teddy, sniffing out the missing page" />
         </div>
         <p className="tp-poster__desc">
           One page, last seen wandering off. It answers to the address you typed, but it isn&apos;t here any more. Teddy

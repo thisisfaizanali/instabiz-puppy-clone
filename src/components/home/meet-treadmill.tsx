@@ -2,16 +2,12 @@
 
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useLayoutEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { Teddy } from "@/components/teddy";
 import { useReducedMotion } from "@/lib/reduced-motion";
 
 // On wide screens with motion allowed, the section pins and scrolling walks the row of doors past, each door
 // opening as it crosses the left third. Everywhere else it stays the static grid of open doors.
-export function MeetTreadmill({
-  head,
-  teddy,
-  children,
-  ...props
-}: ComponentProps<"section"> & { head: ReactNode; teddy: ReactNode }) {
+export function MeetTreadmill({ head, children, ...props }: ComponentProps<"section"> & { head: ReactNode }) {
   const rangeRef = useRef<HTMLDivElement>(null);
   const hallRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLOListElement>(null);
@@ -100,12 +96,14 @@ export function MeetTreadmill({
               style={pinned ? { x } : undefined}
               className="tp-meet__track"
               aria-label="Puppies looking for a family"
+              data-treadmill
               onFocus={onFocus}
             >
               {children}
             </motion.ol>
             <div aria-hidden="true" className="tp-meet__floor" />
-            {teddy}
+            {/* Pinned, Teddy walks on the spot while the doors go by. */}
+            <Teddy pose={pinned ? "walk" : "sit"} act={pinned ? "treadmill" : undefined} className="tp-meet__teddy" />
           </div>
         </div>
       </div>

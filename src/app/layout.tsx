@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
+import { PawTrail } from "@/components/paw-trail";
 import { RouteCurtain } from "@/components/route-curtain";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <MobileBar />
+        <PawTrail />
         <SmoothScroll />
       </body>
     </html>
