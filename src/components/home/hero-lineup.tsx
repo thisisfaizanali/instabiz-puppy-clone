@@ -56,6 +56,8 @@ export function HeroLineup({ friends }: { friends: Friend[] }) {
     const list = listRef.current;
     if (!list || !count || prefersReducedMotion()) return;
     const swaps = friends.length > count;
+    // The travelling puppy marks the scene he has left with data-here="false"; the lineup rests then too.
+    const scene = list.closest<HTMLElement>("[data-pup-scene]");
     let visible = true;
     let busyUntil = 0;
     let alive = true;
@@ -77,7 +79,7 @@ export function HeroLineup({ friends }: { friends: Friend[] }) {
     const later = (fn: () => void, ms: number) => timers.push(setTimeout(fn, ms));
 
     const next = () => {
-      if (document.hidden || !visible || performance.now() <= busyUntil) return later(next, 900);
+      if (document.hidden || !visible || performance.now() <= busyUntil || scene?.dataset.here === "false") return later(next, 900);
       if (!swaps) return duck();
       if (!bench.length) bench = shuffle(offstage());
       // Wait for the incoming photo so it never pops up blank.
