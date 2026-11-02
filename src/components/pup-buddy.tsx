@@ -5,12 +5,15 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/reduced-motion";
 import { TeddyRig } from "@/lib/teddy-rig";
 import { poses, type PoseName } from "@/lib/teddy-shape";
-import { hearts, tricks, type Actor, type Beat } from "@/lib/teddy-tricks";
+import { hearts, pickTrick, tricks, type Actor, type Beat, type Trick } from "@/lib/teddy-tricks";
 import { TeddySvg } from "./teddy-svg";
 
 const now = () => performance.now() / 1000;
+const peekTricks: Trick[] = ["peekaboo", "woof", "tilt", "sneeze"];
+const snugTricks: Trick[] = ["tilt", "love", "sneeze", "woof"];
 
-// Teddy, alive: he breathes, blinks, wags and now and then tilts his head. The server and reduced motion get him
+// Teddy, alive: he breathes, blinks, wags, now and then tilts his head, follows the mouse with his eyes, does a
+// trick when clicked and goes happy-eyed while the mouse rests on him. The server and reduced motion get him
 // still in his resting pose. A resting spot on the home page hands him over to the travelling puppy instead.
 export function PupBuddy({
   pose = "sit",
@@ -44,6 +47,12 @@ export function PupBuddy({
     let last = now();
     let idleAt = last;
     let sayUntil = 0;
+    let pointer: { x: number; y: number; t: number } | null = null;
+    let lastTrick: Trick | null = null;
+    let clicks = 0;
+    let clickedAt = 0;
+    let playing = false;
+    let playUntil = 0;
     const actor: Actor = {
       d: rig,
       rest: poses[pose],
@@ -61,6 +70,11 @@ export function PupBuddy({
       const dt = Math.min(0.05, t - last);
       last = t;
       while (queue.length && queue[0][0] <= t) queue.shift()![1](t);
+      if (playing !== t < playUntil) {
+        playing = !playing;
+        el.toggleAttribute("data-playing", playing);
+      }
+      rig.lookAt(pointer && t - pointer.t < 3 ? pointer : null);
       if (act === "tilt" && !queue.length) rig.cock(Math.sin(0.9 * t) > 0.35 ? 13 : Math.sin(0.9 * t) < -0.35 ? -10 : 0);
       if (!queue.length && t - idleAt > 9) {
         idleAt = t;
@@ -84,9 +98,45 @@ export function PupBuddy({
     const io = new IntersectionObserver(([entry]) => run(entry.isIntersecting));
     io.observe(el);
 
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === "mouse") pointer = { x: e.clientX, y: e.clientY, t: now() };
+    };
+    // Clicks in quick succession build up to zoomies; a peeking or snug Teddy has his own few tricks.
+    const onClick = () => {
+      const t = now();
+      clicks = t - clickedAt < 0.7 ? clicks + 1 : 1;
+      clickedAt = t;
+      const pool = pose === "peek" ? peekTricks : pose === "snug" ? snugTricks : null;
+      const options = pool?.filter((name) => name !== lastTrick) ?? [];
+      const trick = pool ? options[Math.floor(Math.random() * options.length)] : pickTrick(lastTrick, clicks);
+      lastTrick = trick;
+      rig.reset();
+      queue = tricks[trick](actor, t);
+      playUntil = queue[queue.length - 1][0] + 0.4;
+      idleAt = t;
+    };
+    const onPointerEnter = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      rig.petting(true);
+      rig.wag(1);
+    };
+    const onPointerLeave = () => {
+      rig.petting(false);
+      rig.wag(0.6);
+    };
+    addEventListener("pointermove", onPointerMove, { passive: true });
+    el.addEventListener("click", onClick);
+    el.addEventListener("pointerenter", onPointerEnter);
+    el.addEventListener("pointerleave", onPointerLeave);
+
     return () => {
       run(false);
+      el.removeAttribute("data-playing");
       io.disconnect();
+      removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("click", onClick);
+      el.removeEventListener("pointerenter", onPointerEnter);
+      el.removeEventListener("pointerleave", onPointerLeave);
     };
   }, [reduced, pose, facing, act, asStop]);
 

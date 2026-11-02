@@ -10,6 +10,22 @@
   display: block;
 }
 
+.pup-buddy[data-live] > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+
+/* Hidden parts of the drawing never catch the pointer. */
+.pup-buddy svg [opacity="0"], .pup-buddy svg [opacity="0"] * {
+  pointer-events: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .pup-buddy[data-live] > svg :is(path, ellipse, circle) {
+    cursor: url(/cursor/paw-press.svg) 9 6, pointer;
+  }
+}
+
 .pup-stop {
   pointer-events: none;
 }

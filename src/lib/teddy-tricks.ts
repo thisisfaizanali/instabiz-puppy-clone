@@ -102,3 +102,13 @@ export function hearts(host: HTMLElement, x: number, y: number) {
       );
   }
 }
+
+const clickable: Trick[] = ["woof", "spin", "beg", "bow", "hop", "love", "tilt", "sneeze"];
+let deck: Trick[] = [];
+
+// The next trick for a click: a shuffled deal that never repeats the last one, or zoomies after a burst of clicks.
+export function pickTrick(last: Trick | null, clicks: number): Trick {
+  if (clicks >= 4) return "zoomies";
+  if (!deck.length) deck = clickable.filter((t) => t !== last).sort(() => Math.random() - 0.5);
+  return deck.pop()!;
+}
