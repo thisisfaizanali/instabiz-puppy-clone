@@ -1,6 +1,7 @@
-import { PupBuddy } from "@/components/pup-buddy";
 import Link from "next/link";
+import { PupBuddy } from "@/components/pup-buddy";
 import { GoneHomeTicket } from "@/components/gone-home/gone-home-ticket";
+import { RevealScope } from "@/components/reveal-scope";
 import { goneHomeTickets } from "@/data/gone-home";
 import { pageMetadata } from "@/lib/metadata";
 import { getPuppies } from "@/lib/puppies";
@@ -13,7 +14,7 @@ export const metadata = pageMetadata(
 
 export default function GoneHomePage() {
   return (
-    <div className="gutter mx-auto max-w-[110rem] pb-24 pt-10 md:pt-16">
+    <RevealScope data-page="gone" className="gutter mx-auto max-w-[110rem] pb-24 pt-10 md:pt-16">
       <header className="tp-boothhead">
         <div className="max-w-3xl">
           <h1 className="font-plush text-giant">
@@ -53,6 +54,6 @@ export default function GoneHomePage() {
           <GoneHomeTicket key={puppy.slug} puppy={puppy} ticket={goneHomeTickets[puppy.slug]} index={i} />
         ))}
       </ul>
-    </div>
+    </RevealScope>
   );
 }
