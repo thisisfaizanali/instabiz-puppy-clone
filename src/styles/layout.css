@@ -201,6 +201,38 @@ html {
   animation: tp-menu-in 0.5s var(--ease-snap);
 }
 
+.tp-menu[data-closing] {
+  animation: tp-menu-out 0.42s var(--ease-snap) forwards;
+}
+
+.tp-menu[data-closing]::backdrop {
+  animation: tp-menu-backdrop-out 0.42s forwards;
+}
+
+.tp-menu[open] .tp-menu-link {
+  animation: tp-menu-link 0.55s var(--ease-pounce) both;
+}
+
+.tp-menu li:nth-child(2) .tp-menu-link {
+  animation-delay: 50ms;
+}
+
+.tp-menu li:nth-child(3) .tp-menu-link {
+  animation-delay: 0.1s;
+}
+
+.tp-menu li:nth-child(4) .tp-menu-link {
+  animation-delay: 0.15s;
+}
+
+.tp-menu li:nth-child(5) .tp-menu-link {
+  animation-delay: 0.2s;
+}
+
+.tp-menu li:nth-child(6) .tp-menu-link {
+  animation-delay: 0.25s;
+}
+
 .tp-menu-link[data-active="true"] {
   color: var(--color-toffee-deep);
 }
@@ -211,6 +243,28 @@ html {
   }
   to {
     clip-path: circle(150% at calc(100% - 3rem) 2rem);
+  }
+}
+
+@keyframes tp-menu-out {
+  from {
+    clip-path: circle(150% at calc(100% - 3rem) 2rem);
+  }
+  to {
+    clip-path: circle(0% at calc(100% - 3rem) 2rem);
+  }
+}
+
+@keyframes tp-menu-backdrop-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes tp-menu-link {
+  from {
+    opacity: 0;
+    transform: translateY(1.2rem) rotate(-2deg);
   }
 }
 
