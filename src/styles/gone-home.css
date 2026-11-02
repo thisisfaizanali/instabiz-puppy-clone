@@ -76,6 +76,19 @@
   translate: 0 -4px;
 }
 
+.tp-ticket[data-armed]:not([data-revealed]) .tp-ticket__link {
+  clip-path: inset(0 0 100%);
+  translate: 0 -.9rem;
+}
+
+.tp-ticket[data-armed] .tp-ticket__link {
+  transition: clip-path .7s var(--ease-silk) calc(var(--i) * 80ms), translate .7s var(--ease-silk) calc(var(--i) * 80ms), filter .45s var(--ease-silk);
+}
+
+.tp-ticket[data-revealed] .tp-ticket__link {
+  clip-path: inset(-2rem);
+}
+
 .tp-ticket__main, .tp-ticket__stub {
   border: 3px solid var(--color-cocoa);
   background: #fff8ea;

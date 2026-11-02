@@ -12,6 +12,8 @@ A clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/), built as a t
 
 ## Getting started
 
+Needs Node 22.18 or newer: the tests run `.ts` files directly, which Node only does without a flag from that version. CI (`.github/workflows/ci.yml`) runs lint, tests and a build on every pull request and push to `main`.
+
 ```bash
 npm install
 npm run dev

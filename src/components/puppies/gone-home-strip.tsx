@@ -19,9 +19,9 @@ export function GoneHomeStrip() {
         <ul className="tp-gone-strip__row" aria-label="Some puppies who have gone home">
           {getPuppies({ status: "gone-home" })
             .slice(0, 5)
-            .map((puppy) => (
+            .map((puppy, i) => (
               <li key={puppy.slug}>
-                <PuppySketch puppy={puppy} sizes="9rem" small />
+                <PuppySketch puppy={puppy} index={i} sizes="9rem" small />
               </li>
             ))}
         </ul>

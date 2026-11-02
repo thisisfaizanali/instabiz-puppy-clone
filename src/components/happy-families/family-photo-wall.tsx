@@ -7,6 +7,8 @@ import { Lightbox } from "@/components/lightbox";
 import { Paw } from "@/components/paw";
 import type { Media } from "@/lib/types";
 
+const sizes = "(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 45vw";
+
 // Every family photo as a polaroid in masonry columns; each opens the lightbox at that photo.
 export function FamilyPhotoWall({ photos }: { photos: Media[] }) {
   const [open, setOpen] = useState<number | null>(null);
@@ -34,7 +36,7 @@ export function FamilyPhotoWall({ photos }: { photos: Media[] }) {
                   height={photo.height}
                   loading={i < 2 ? "eager" : "lazy"}
                   fetchPriority={i < 2 ? "high" : undefined}
-                  sizes="(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 45vw"
+                  sizes={sizes}
                   style={{ width: "100%", height: "auto", backgroundColor: photo.color }}
                 />
               </Polaroid>
@@ -43,7 +45,7 @@ export function FamilyPhotoWall({ photos }: { photos: Media[] }) {
           </li>
         ))}
       </ul>
-      <Lightbox photos={photos} index={open} onIndexChange={setOpen} onClose={() => setOpen(null)} />
+      <Lightbox photos={photos} index={open} onIndexChange={setOpen} onClose={() => setOpen(null)} pageSizes={sizes} />
     </>
   );
 }

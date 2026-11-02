@@ -1,7 +1,42 @@
-// The Korea to Dubai route with the plane part way along it, optionally with a puppy in the porthole.
+"use client";
+
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useEffect, useRef } from "react";
+import { useReducedMotion } from "@/lib/reduced-motion";
+
+// Where reduced motion parks the plane, part way along the route.
+const parked = 0.62;
+
+// Puts the plane on the route at `t` (0 to 1) with its nose along the direction of travel,
+// fading it in over the first stretch.
+function place(route: SVGPathElement | null, plane: SVGGElement | null, t: number) {
+  if (!route || !plane) return;
+  const length = route.getTotalLength();
+  const at = Math.min(length, Math.max(0, t * length));
+  const point = route.getPointAtLength(at);
+  const ahead = route.getPointAtLength(Math.min(length, at + 1));
+  const behind = route.getPointAtLength(Math.max(0, at - 1));
+  const angle = (Math.atan2(ahead.y - behind.y, ahead.x - behind.x) * 180) / Math.PI;
+  plane.setAttribute("transform", `translate(${point.x.toFixed(1)} ${point.y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
+  plane.style.opacity = String(Math.min(1, Math.max(0, (t - 0.11) / 0.06)));
+}
+
+// The Korea to Dubai route with the plane flying along it as you scroll past, optionally with a puppy in the porthole.
+// Without JS or with reduced motion it sits part way along.
 export function Flight({ label, photo }: { label: string; photo?: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const route = useRef<SVGPathElement>(null);
+  const plane = useRef<SVGGElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: box, offset: ["start 95%", "end 25%"] });
+
+  useMotionValueEvent(scrollYProgress, "change", (t) => {
+    if (!reduced) place(route.current, plane.current, t);
+  });
+  useEffect(() => place(route.current, plane.current, reduced ? parked : scrollYProgress.get()), [reduced, scrollYProgress]);
+
   return (
-    <div className="tp-flight">
+    <div ref={box} className="tp-flight">
       <svg viewBox="0 0 660 300" role="img" aria-label={label}>
         {photo && (
           <defs>
@@ -10,7 +45,7 @@ export function Flight({ label, photo }: { label: string; photo?: string }) {
             </clipPath>
           </defs>
         )}
-        <path d="M40 250 C 170 40, 470 20, 620 168" className="tp-flight__route" />
+        <path ref={route} d="M40 250 C 170 40, 470 20, 620 168" className="tp-flight__route" />
         <circle cx="40" cy="250" r="7" className="tp-flight__dot" />
         <circle cx="620" cy="168" r="7" className="tp-flight__dot" />
         <text x="40" y="284" textAnchor="middle" className="tp-flight__label">
@@ -19,7 +54,7 @@ export function Flight({ label, photo }: { label: string; photo?: string }) {
         <text x="620" y="202" textAnchor="middle" className="tp-flight__label">
           Dubai
         </text>
-        <g transform="translate(410 70)">
+        <g ref={plane} transform="translate(410 70)">
           <g transform="translate(-126 -78)">
             <path d="M28 60 L8 26 L34 26 L60 54 Z" className="tp-flight__wing" />
             <path d="M108 112 L142 156 L172 156 L158 112 Z" className="tp-flight__wing tp-flight__wing--far" />

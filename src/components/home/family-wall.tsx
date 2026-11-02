@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Lightbox } from "@/components/lightbox";
 import type { Media } from "@/lib/types";
 
+const sizes = "(min-width: 1024px) 18vw, (min-width: 640px) 28vw, 42vw";
+
 // Polaroid placement from the reference: tilt and tape side repeat every 8 prints, tape colour every 5.
 const tilts = ["-2.2deg", "1.6deg", "-0.9deg", "2.4deg", "-1.5deg", "0.8deg", "-2.6deg", "1.2deg"];
 const sides = ["center", "left", "right", "tl", "center", "right", "left", "center"];
@@ -48,7 +50,7 @@ export function FamilyWall({ photos }: { photos: Media[] }) {
                   src={photo.url}
                   alt={photo.alt}
                   fill
-                  sizes="(min-width: 1024px) 18vw, (min-width: 640px) 28vw, 42vw"
+                  sizes={sizes}
                   style={{ backgroundColor: photo.color }}
                 />
               </Polaroid>
@@ -56,7 +58,7 @@ export function FamilyWall({ photos }: { photos: Media[] }) {
           </li>
         ))}
       </ul>
-      <Lightbox photos={photos} index={open} onIndexChange={setOpen} onClose={() => setOpen(null)} />
+      <Lightbox photos={photos} index={open} onIndexChange={setOpen} onClose={() => setOpen(null)} pageSizes={sizes} />
     </>
   );
 }

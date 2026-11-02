@@ -44,11 +44,14 @@ function SketchDoodle({ doodle: d }: { doodle: Doodle }) {
 // A puppy drawn into Teddy's sketchbook: the photo inside a wobbly hand-drawn frame.
 export function PuppySketch({
   puppy,
+  index = 0,
   sizes = "(min-width: 1536px) 17rem, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw",
   preload = false,
   small = false,
 }: {
   puppy: Puppy;
+  // Position in its list: cards draw themselves in a stagger of eight.
+  index?: number;
   sizes?: string;
   preload?: boolean;
   // The gone-home strip: smaller, with a "gone home" sticker and no meta line.
@@ -62,7 +65,11 @@ export function PuppySketch({
     <Link
       href={`/puppies/${puppy.slug}`}
       className={`tp-sketch${small ? " tp-sketch--small" : ""}`}
-      style={{ "--tilt": `${s.tilt.toFixed(2)}deg`, "--wash": s.wash.colour } as React.CSSProperties}
+      data-reveal
+      // The reveal system arms this card (data-armed) as soon as the page hydrates, which can be before the
+      // streamed listing around it has hydrated.
+      suppressHydrationWarning
+      style={{ "--tilt": `${s.tilt.toFixed(2)}deg`, "--d": `${(index % 8) * 70}ms`, "--wash": s.wash.colour } as React.CSSProperties}
       aria-label={label}
     >
       <span className="tp-sketch__frame">

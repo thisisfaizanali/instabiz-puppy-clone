@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
+import { MotionProvider } from "@/components/motion-provider";
 import { PawTrail } from "@/components/paw-trail";
 import { RouteCurtain } from "@/components/route-curtain";
 import { SiteFooter } from "@/components/site-footer";
@@ -58,7 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <SiteHeader />
         <main id="main" tabIndex={-1} className="relative flex-1 pt-[var(--header-h)] outline-none">
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </main>
         <SiteFooter />
         <MobileBar />
