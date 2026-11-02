@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { site } from "@/lib/site";
 import { Paw } from "./paw";
 
@@ -10,6 +10,13 @@ export function MobileMenu() {
   const pathname = usePathname();
   const dialog = useRef<HTMLDialogElement>(null);
   const close = () => dialog.current?.close();
+
+  // Page links are taken over by the route curtain, which announces the navigation instead.
+  useEffect(() => {
+    const onNavigate = () => dialog.current?.close();
+    addEventListener("tp:navigate", onNavigate);
+    return () => removeEventListener("tp:navigate", onNavigate);
+  }, []);
 
   return (
     <>
