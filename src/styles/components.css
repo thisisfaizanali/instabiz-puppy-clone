@@ -449,3 +449,18 @@
     width: 86%;
   }
 }
+
+/* Lightbox photo: the copy the page already loaded shows first, the sharp one fades in over it */
+.tp-viewer__sharp {
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+
+.tp-viewer__sharp[data-sharp] {
+  opacity: 1;
+}
+
+.tp-viewer__first--done {
+  visibility: hidden;
+  transition: visibility 0s .2s;
+}

@@ -1,56 +1,75 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { Lightbox } from "@/components/lightbox";
 import { coverStyle } from "@/lib/media";
 import type { Media } from "@/lib/types";
 
+const sizes = "(min-width: 1024px) 55vw, 92vw";
+
 // A puppy's photos and videos as a storybook page, with prev/next, a counter and thumbnails.
-// Opening the page shows the same item full screen in the lightbox, where the arrow keys step.
+// Changing item turns the page from the side you are heading to. Opening the page shows the same item
+// full screen in the lightbox, where the arrow keys step.
 export function PuppyGallery({ name, media }: { name: string; media: Media[] }) {
   const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
   const [open, setOpen] = useState(false);
   const count = media.length;
   const item = media[index];
-  const go = (i: number) => setIndex(((i % count) + count) % count);
+  const go = (i: number) => {
+    setDir(i > index ? 1 : -1);
+    setIndex(((i % count) + count) % count);
+  };
   const label = (i: number) => `${name}, ${media[i].kind === "video" ? "video" : "photo"} ${i + 1} of ${count}`;
 
   return (
     <div>
       <div className="tp-storypage relative aspect-[4/5] md:aspect-[5/6]">
-        <button
-          type="button"
-          className="absolute inset-0 block size-full"
-          onClick={() => setOpen(true)}
-          aria-label={`Open ${label(index)} full screen`}
-        >
-          {item.kind === "video" ? (
-            <video
-              key={item.url}
-              src={item.url}
-              poster={item.poster?.url}
-              className="size-full object-cover"
-              muted
-              loop
-              playsInline
-              autoPlay
-              aria-label={item.alt}
-            />
-          ) : (
-            <Image
-              key={item.url}
-              src={item.url}
-              alt={item.alt}
-              fill
-              sizes="(min-width: 1024px) 55vw, 92vw"
-              quality={85}
-              preload={index === 0}
-              className="object-cover"
-              style={coverStyle(item)}
-            />
-          )}
-        </button>
+        <AnimatePresence initial={false} custom={dir} mode="popLayout">
+          <motion.button
+            key={item.url}
+            type="button"
+            custom={dir}
+            className="absolute inset-0 block size-full"
+            initial={{
+              clipPath: dir > 0 ? "inset(0% 0% 0% 100%)" : "inset(0% 100% 0% 0%)",
+              rotateY: -14 * dir,
+              transformPerspective: 1400,
+            }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)", rotateY: 0 }}
+            exit={{ opacity: 0.4, scale: 0.97 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformOrigin: dir > 0 ? "0% 50%" : "100% 50%" }}
+            onClick={() => setOpen(true)}
+            aria-label={`Open ${label(index)} full screen`}
+          >
+            {item.kind === "video" ? (
+              <video
+                src={item.url}
+                poster={item.poster?.url}
+                className="size-full object-cover"
+                muted
+                loop
+                playsInline
+                autoPlay
+                aria-label={item.alt}
+              />
+            ) : (
+              <Image
+                src={item.url}
+                alt={item.alt}
+                fill
+                sizes={sizes}
+                quality={85}
+                preload={index === 0}
+                className="object-cover"
+                style={coverStyle(item)}
+              />
+            )}
+          </motion.button>
+        </AnimatePresence>
         {count > 1 && (
           <div className="absolute inset-x-4 bottom-4 flex justify-between">
             <button
@@ -105,6 +124,9 @@ export function PuppyGallery({ name, media }: { name: string; media: Media[] }) 
         onClose={() => setOpen(false)}
         label={`${name} photos`}
         title={label}
+        pageSizes={sizes}
+        quality={85}
+        fade
       />
     </div>
   );

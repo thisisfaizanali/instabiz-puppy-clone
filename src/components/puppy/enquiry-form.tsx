@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { type ComponentProps, useActionState, useEffect, useId, useRef, useTransition } from "react";
 import { type EnquiryState, sendEnquiry } from "@/lib/send-enquiry";
 
@@ -139,11 +140,15 @@ export function EnquiryForm({
         </form>
       )}
       {state.ok && (
-        <div
+        <motion.div
           role="status"
           tabIndex={-1}
           // The submit button is gone once this shows, so focus lands here instead of the document.
           ref={(el) => el?.focus()}
+          // The "Message received!" card flips down into place.
+          initial={{ rotateX: -80, opacity: 0, y: -10 }}
+          animate={{ rotateX: 0, opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 160, damping: 16 }}
           className="tp-sent rounded-[2rem] outline-none focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-cocoa border-[3px] border-cocoa bg-honey p-8 text-center">
           <svg viewBox="0 0 120 84" className="tp-envelope mx-auto w-32" aria-hidden="true">
             <path d="M6 10h108v68H6z" fill="#fffdf8" stroke="#2a170e" strokeWidth="3" strokeLinejoin="round" />
@@ -157,7 +162,7 @@ export function EnquiryForm({
           <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
             WhatsApp us
           </a>
-        </div>
+        </motion.div>
       )}
     </>
   );

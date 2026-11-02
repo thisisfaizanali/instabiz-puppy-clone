@@ -8,6 +8,7 @@ import { PupBuddy } from "@/components/pup-buddy";
 import { RevealScope } from "@/components/reveal-scope";
 import { EnquiryForm } from "@/components/puppy/enquiry-form";
 import { PuppyGallery } from "@/components/puppy/puppy-gallery";
+import { StoryRibbon } from "@/components/puppy/story-ribbon";
 import { puppies } from "@/data/puppies";
 import { coverStyle } from "@/lib/media";
 import { getAdjacentPuppies, getPuppy } from "@/lib/puppies";
@@ -142,11 +143,7 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
         // Escape "<" so the data can never close the script tag.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <div aria-hidden="true" className="tp-ribbon">
-        <div className="tp-ribbon__track">
-          <span className="tp-ribbon__band" />
-        </div>
-      </div>
+      <StoryRibbon />
       <div className="gutter mx-auto max-w-[110rem] pt-8 pb-20 md:pt-12">
         <nav aria-label="Breadcrumb" className="text-[0.95rem] font-semibold text-cocoa-soft">
           <Link className="link-ink" href={available ? "/puppies" : "/gone-home"}>

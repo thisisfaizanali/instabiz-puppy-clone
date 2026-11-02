@@ -1,22 +1,3 @@
-/* The "Message received!" card flips down into place */
-.tp-sent {
-  transform-origin: 50% 0;
-  animation: tp-sent-flip .7s var(--ease-pounce) both;
-}
-
-@keyframes tp-sent-flip {
-  0% {
-    opacity: 0;
-    transform: perspective(900px) rotateX(-80deg) translateY(-10px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tp-sent {
-    animation: none;
-  }
-}
-
 /* Puppy detail page: the storybook with its gallery page, name tag, chapters and letter */
 .chip {
   background: var(--color-honey-soft);
@@ -175,8 +156,6 @@
   width: 100%;
   height: 100%;
   display: block;
-  /* At rest, as on the reference before any scrolling; the scroll-driven fill is not ported. */
-  transform: scaleY(0);
 }
 
 @media (max-width: 1023px) {
