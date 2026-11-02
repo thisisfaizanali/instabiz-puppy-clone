@@ -13,6 +13,7 @@ export function Hero() {
   }));
   return (
     <section
+      data-pup-scene
       data-tone="light"
       className="tp-scene tp-hero"
       style={{ "--sky-top": "#fffdf8", "--sky-bottom": "#fff1d8", "--quilt": "#fff1d8" } as React.CSSProperties}

@@ -12,6 +12,7 @@ export function TwoWays() {
   const { props: flyerPhoto } = getImageProps({ src: flyer.media[0].url, alt: "", width: 50, height: 50 });
   return (
     <section
+      data-pup-scene
       data-tone="light"
       className="tp-scene tp-paths"
       style={{ "--sky-top": "#fbe3b4", "--sky-bottom": "#f7d18d" } as React.CSSProperties}
@@ -27,7 +28,7 @@ export function TwoWays() {
             <h3 id="way-local" className="tp-sign tp-sign--left font-plush">
               Puppies in Dubai
             </h3>
-            <div className="tp-way__scene">
+            <div className="tp-way__scene" data-pup-look>
               <Skyline className="tp-way__skyline" />
               <figure className="tp-window">
                 <span className="tp-window__glass">
@@ -54,7 +55,7 @@ export function TwoWays() {
             <h3 id="way-imported" className="tp-sign tp-sign--right font-plush">
               Imported for you
             </h3>
-            <div className="tp-way__scene">
+            <div className="tp-way__scene" data-pup-look>
               <Flight label={`A plane bringing a ${flyer.breed} puppy from Korea to Dubai`} photo={flyerPhoto.src} />
             </div>
             <p className="tp-way__text">

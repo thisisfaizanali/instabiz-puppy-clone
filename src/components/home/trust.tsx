@@ -39,6 +39,7 @@ const entries: Stamp[] = [
 export function Trust() {
   return (
     <section
+      data-pup-scene
       data-tone="light"
       className="tp-scene tp-passport"
       style={{ "--sky-top": "#f0b866", "--sky-bottom": "#a65a30" } as React.CSSProperties}

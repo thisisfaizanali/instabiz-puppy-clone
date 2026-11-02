@@ -36,7 +36,7 @@ export function FamilyWall({ photos }: { photos: Media[] }) {
     <>
       <ul className="tp-photowall__prints" aria-label="Photos from TeddyPups families">
         {photos.slice(0, 8).map((photo, i) => (
-          <li key={photo.url} data-reveal style={{ "--d": `${110 * drops[i]}ms` } as React.CSSProperties}>
+          <li key={photo.url} data-reveal data-pup-look={i === 1 || i === 4 ? "" : undefined} style={{ "--d": `${110 * drops[i]}ms` } as React.CSSProperties}>
             <button
               type="button"
               className="tp-photowall__print"

@@ -145,6 +145,11 @@
   position: relative;
 }
 
+/* The pups duck down while Teddy is away from the hero, and pop back up when he returns. */
+.tp-hero[data-here=false] :is(.tp-lineup__pup, .tp-lineup__ghost) {
+  translate: 0 58%;
+}
+
 .tp-lineup__photo {
   height: var(--h);
   border: 3px solid var(--color-cocoa);
@@ -1665,6 +1670,17 @@
   .tp-house__door {
     animation: none !important;
   }
+}
+
+/* With the travelling puppy out, the door waits shut and swings open once he has visited. */
+html[data-pup] .tp-house__door {
+  transition: transform 1.2s cubic-bezier(.3,1.25,.5,1) .3s;
+  animation: none;
+  transform: rotateY(0);
+}
+
+html[data-pup] .tp-home[data-visited=true] .tp-house__door {
+  transform: rotateY(-102deg);
 }
 
 .tp-house__peep {
