@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Paw } from "@/components/paw";
+import { RevealScope } from "@/components/reveal-scope";
 import { EnquiryForm } from "@/components/puppy/enquiry-form";
 import { PuppyGallery } from "@/components/puppy/puppy-gallery";
 import { puppies } from "@/data/puppies";
@@ -159,8 +160,8 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
             <PuppyGallery name={puppy.displayName} media={puppy.media} />
           </div>
           <div className="min-w-0 lg:col-span-5">
-            <div className="lg:sticky lg:top-[calc(var(--header-h)+5.5rem)]">
-              <div className="tp-tag tp-board mt-16 !rounded-[2.2rem_2.2rem_2.2rem_0.6rem] !p-7 md:!p-9 lg:mt-20">
+            <RevealScope className="lg:sticky lg:top-[calc(var(--header-h)+5.5rem)]">
+              <div className="tp-tag tp-board mt-16 !rounded-[2.2rem_2.2rem_2.2rem_0.6rem] !p-7 md:!p-9 lg:mt-20" data-reveal>
                 <span aria-hidden="true" className="tp-tag__ring" />
                 <div className="absolute -top-[4.8rem] right-6 w-[9.5rem]">
                   <Image
@@ -222,7 +223,7 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
                   ))}
                 </ul>
               </div>
-            </div>
+            </RevealScope>
           </div>
         </div>
         {showHomeSteps && (

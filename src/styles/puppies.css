@@ -294,6 +294,22 @@
   stroke: var(--color-toffee);
   stroke-width: 7px;
   stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .9s var(--ease-silk) .25s;
+}
+
+.tp-sketchbook__title[data-armed]:not([data-revealed]) .tp-sketchbook__underline path {
+  stroke-dashoffset: 1px;
+}
+
+.tp-sketchbook [data-reveal]:not(.tp-sketch) {
+  transition: opacity .6s ease, translate .7s var(--ease-silk);
+}
+
+.tp-sketchbook [data-reveal][data-armed]:not([data-revealed]):not(.tp-sketch):not(.tp-sketchbook__title) {
+  opacity: 0;
+  translate: 0 1rem;
 }
 
 .tp-sketchbook__self {
