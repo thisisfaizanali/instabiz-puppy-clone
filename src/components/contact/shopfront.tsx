@@ -4,8 +4,6 @@ import { showroomPhotos } from "@/data/showroom";
 import { coverStyle } from "@/lib/media";
 import { site } from "@/lib/site";
 
-const mapsHref = "https://maps.app.goo.gl/ZdJvwHBSQWWZT54s7";
-
 // WhatsApp, phone and email, then the showroom card under its striped awning.
 export function Shopfront() {
   const photo = showroomPhotos[3];
@@ -55,7 +53,7 @@ export function Shopfront() {
               <Paw className="size-5 shrink-0 text-toffee-deep" />
               {site.address}
             </p>
-            <a href={mapsHref} target="_blank" rel="noopener noreferrer" className="btn btn-ghost mt-6 !bg-milk">
+            <a href={site.mapsHref} target="_blank" rel="noopener noreferrer" className="btn btn-ghost mt-6 !bg-milk">
               Open in Google Maps
             </a>
           </div>

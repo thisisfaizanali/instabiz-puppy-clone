@@ -1,14 +1,13 @@
-// The business number, used for calls and WhatsApp.
-const phoneNumber = "971541676733";
-
-// A wa.me link that opens WhatsApp with the message already typed.
-export function whatsappLink(message: string) {
-  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-}
+// The number people call, and the separate one WhatsApp messages go to.
+const phoneNumber = "971500000000";
+const whatsappNumber = "919898124987";
+const socialHref = "https://www.instabizweb.com/";
 
 export const site = {
   name: "TeddyPups U.A.E.",
   shortName: "TeddyPups",
+  description:
+    "TeddyPups U.A.E. is a Dubai-based brand specializing in miniature puppies, offering premium services and worldwide shipping.",
   // Origin for absolute URLs (metadataBase, JSON-LD, shared links, enquiry emails): SITE_URL,
   // then the production domain Vercel provides, then local dev. A getter, so the env vars are
   // only read where it's used, which is server code; client components never touch it.
@@ -18,16 +17,19 @@ export const site = {
     return "http://localhost:3000";
   },
   phone: {
-    display: "+971 54 167 6733",
+    display: "+971 50 000 0000",
     href: `tel:+${phoneNumber}`,
   },
-  whatsapp: whatsappLink("Hi TeddyPups! I'd love to know more about your puppies."),
-  email: "teddypupsadmin@gmail.com",
+  // Every WhatsApp link on the site is this one, whatever the page.
+  whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Insta Biz Web, I'd like to discuss a project.")}`,
+  email: "info@instabizweb.com",
   address: "Downtown Dubai, United Arab Emirates",
+  // The reference points the maps button and all three socials at its parent site.
+  mapsHref: socialHref,
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/teddypups.worldwide/" },
-    { label: "TikTok", href: "https://www.tiktok.com/@teddypupsuae" },
-    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61567496944539" },
+    { label: "Instagram", href: socialHref },
+    { label: "TikTok", href: socialHref },
+    { label: "Facebook", href: socialHref },
   ],
   nav: [
     { label: "Home", href: "/" },

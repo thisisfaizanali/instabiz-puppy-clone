@@ -2,7 +2,6 @@ import { RevealScope } from "@/components/reveal-scope";
 import { NoticeBoard } from "@/components/faq/notice-board";
 import { faqs } from "@/data/faq";
 import { pageMetadata } from "@/lib/metadata";
-import { whatsappLink } from "@/lib/site";
 
 export const metadata = pageMetadata(
   "/faq",
@@ -43,7 +42,7 @@ export default function FaqPage() {
             </p>
           </header>
           <div className="mt-12 md:mt-16">
-            <NoticeBoard faqs={faqs} askHref={whatsappLink("Hi TeddyPups! I have a question:")} />
+            <NoticeBoard faqs={faqs} />
           </div>
         </div>
       </section>
