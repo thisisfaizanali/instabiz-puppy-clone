@@ -30,6 +30,14 @@
 
 .tp-hero__sun {
   pointer-events: none;
+  animation: tp-sunrise 2.6s var(--ease-silk) both;
+}
+
+@keyframes tp-sunrise {
+  0% {
+    opacity: 0;
+    translate: -50% 16%;
+  }
 }
 
 .tp-hero__copy {
@@ -142,6 +150,8 @@
 .tp-lineup__pup {
   transition: translate .6s var(--ease-pounce);
   transition-delay: calc(var(--i) * 50ms);
+  animation: tp-peek .75s var(--ease-pounce) backwards;
+  animation-delay: calc(.62s + var(--i) * 90ms);
   border-radius: 999px 999px 0 0;
   display: block;
   position: relative;
@@ -177,6 +187,61 @@
 
 .tp-lineup__pup:is(:hover,:focus-visible) .tp-lineup__photo {
   translate: 0 -12%;
+}
+
+@keyframes tp-peek {
+  0% {
+    translate: 0 100%;
+  }
+}
+
+.tp-lineup__pup[data-state=duck] .tp-lineup__photo {
+  opacity: .6;
+  transition: translate .34s var(--ease-snap), scale .34s var(--ease-snap), opacity .34s ease-in;
+  translate: 0 108%;
+  scale: .92;
+}
+
+.tp-lineup__pup[data-state=pop] .tp-lineup__photo {
+  animation: tp-pop-up .58s var(--ease-pounce) both;
+}
+
+@keyframes tp-pop-up {
+  0% {
+    opacity: .6;
+    translate: 0 108%;
+    scale: .92;
+  }
+
+  65% {
+    opacity: 1;
+    scale: 1.04;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+  }
+}
+
+.tp-lineup__ghost[data-tag=show] .tp-lineup__name {
+  opacity: 1;
+  translate: var(--tag-x,-50%) -12%;
+}
+
+.tp-lineup__wings {
+  clip-path: inset(50%);
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.tp-lineup__wings img {
+  width: 176px !important;
+  height: 220px !important;
 }
 
 .tp-lineup__seat:first-child {

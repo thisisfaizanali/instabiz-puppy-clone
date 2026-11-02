@@ -1,27 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Teddy } from "@/components/teddy";
 import { getPuppies } from "@/lib/puppies";
-import { coverStyle } from "@/lib/media";
 import { site } from "@/lib/site";
-
-// Lineup placement from the reference: horizontal position, width, how much peeks over the quilt, tilt.
-const seats = [
-  { x: "9%", w: "8.6rem", peek: 0.62, tilt: "-5deg" },
-  { x: "22.5%", w: "10.4rem", peek: 0.8, tilt: "3deg" },
-  { x: "35%", w: "9.2rem", peek: 0.7, tilt: "-2deg" },
-  { x: "65%", w: "9.4rem", peek: 0.74, tilt: "3deg" },
-  { x: "77.5%", w: "10.6rem", peek: 0.82, tilt: "-3deg" },
-  { x: "91%", w: "8.4rem", peek: 0.6, tilt: "4deg" },
-];
-
-function seatStyle(i: number) {
-  const s = seats[i];
-  return { "--x": s.x, "--w": s.w, "--peek": s.peek, "--tilt": s.tilt, "--i": i } as React.CSSProperties;
-}
+import { type Friend, HeroLineup } from "./hero-lineup";
 
 export function Hero() {
-  const lineup = getPuppies().slice(0, seats.length);
+  const friends: Friend[] = getPuppies().map((p) => ({
+    slug: p.slug,
+    displayName: p.displayName,
+    breed: p.breed,
+    cover: p.media[0],
+  }));
   return (
     <section
       data-tone="light"
@@ -67,41 +56,7 @@ export function Hero() {
         </div>
       </div>
       <div className="tp-hero__stage">
-        <ul className="tp-lineup" aria-label="Some of the puppies in our showroom">
-          {lineup.map((puppy, i) => {
-            const cover = puppy.media[0];
-            return (
-              <li key={puppy.slug} className="tp-lineup__seat" style={seatStyle(i)}>
-                <Link
-                  className="tp-lineup__pup"
-                  aria-label={`Meet ${puppy.displayName}, ${puppy.breed}`}
-                  href={`/puppies/${puppy.slug}`}
-                >
-                  <span className="tp-lineup__photo">
-                    <Image
-                      src={cover.url}
-                      alt={cover.alt}
-                      fill
-                      sizes="11rem"
-                      fetchPriority={i < 2 ? "high" : undefined}
-                      className="object-cover"
-                      style={coverStyle(cover)}
-                    />
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <ul aria-hidden="true" className="tp-lineup tp-lineup--tags">
-          {lineup.map((puppy, i) => (
-            <li key={puppy.slug} className="tp-lineup__seat" style={seatStyle(i)}>
-              <span className="tp-lineup__ghost">
-                <span className="tp-lineup__name font-scrawl">{puppy.displayName}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
+        <HeroLineup friends={friends} />
         {/* The LCP element on small screens. Eager rather than preloaded, since the LCP differs by viewport. */}
         <Teddy
           pose="peek"
