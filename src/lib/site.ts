@@ -24,7 +24,8 @@ export const site = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Insta Biz Web, I'd like to discuss a project.")}`,
   email: "info@instabizweb.com",
   address: "Downtown Dubai, United Arab Emirates",
-  // The reference points all three at its parent site.
+  // The reference points the maps button and all three socials at its parent site.
+  mapsHref: socialHref,
   socials: [
     { label: "Instagram", href: socialHref },
     { label: "TikTok", href: socialHref },
