@@ -102,7 +102,13 @@ export function Hero() {
             </li>
           ))}
         </ul>
-        <Teddy pose="peek" label="Teddy, the TeddyPups puppy, peeking over the quilt" className="tp-hero__teddy" />
+        {/* The LCP element on small screens. Eager rather than preloaded, since the LCP differs by viewport. */}
+        <Teddy
+          pose="peek"
+          label="Teddy, the TeddyPups puppy, peeking over the quilt"
+          className="tp-hero__teddy"
+          loading="eager"
+        />
         <div aria-hidden="true" className="tp-quilt">
           <svg className="tp-quilt__edge" width="100%" height="40" preserveAspectRatio="none">
             <defs>

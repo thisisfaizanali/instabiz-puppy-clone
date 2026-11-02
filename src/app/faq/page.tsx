@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { NoticeBoard } from "@/components/faq/notice-board";
 import { faqs } from "@/data/faq";
+import { pageMetadata } from "@/lib/metadata";
 import { whatsappLink } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Questions & answers",
-  description:
-    "Answers about TeddyPups puppies: health checks and vaccinations, meeting local puppies, imported teacup breeds and delivery.",
-};
+export const metadata = pageMetadata(
+  "/faq",
+  "Questions & answers",
+  "Answers about TeddyPups puppies: health checks and vaccinations, meeting local puppies, imported teacup breeds and delivery.",
+);
 
 const faqPage = {
   "@context": "https://schema.org",

@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { GoneHomeTicket } from "@/components/gone-home/gone-home-ticket";
 import { goneHomeTickets } from "@/data/gone-home";
+import { pageMetadata } from "@/lib/metadata";
 import { getPuppies } from "@/lib/puppies";
 
-export const metadata: Metadata = {
-  title: "Gone home",
-  description: "TeddyPups puppies who have already joined their families.",
-};
+export const metadata = pageMetadata(
+  "/gone-home",
+  "Gone home",
+  "TeddyPups puppies who have already joined their families.",
+);
 
 export default function GoneHomePage() {
   return (

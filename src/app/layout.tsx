@@ -3,6 +3,7 @@ import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { shareImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -23,14 +24,19 @@ const shantell = Shantell_Sans({
   axes: ["BNCE", "INFM"],
 });
 
+const title = "TeddyPups U.A.E. — Premium teacup puppies in Dubai";
+const description =
+  "Teddy bear and teacup puppies in Dubai. Meet local puppies in our Downtown Dubai showroom or bring home a rare breed imported from trusted breeders.";
+
+// The home page's tags; every other page sets its own canonical, title and share tags.
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: "TeddyPups U.A.E. — Premium teacup puppies in Dubai",
-    template: "%s | TeddyPups U.A.E.",
-  },
-  description:
-    "Teddy bear and teacup puppies in Dubai. Meet local puppies in our Downtown Dubai showroom or bring home a rare breed imported from trusted breeders.",
+  title: { default: title, template: `%s | ${site.name}` },
+  description,
+  applicationName: site.name,
+  alternates: { canonical: "/" },
+  openGraph: { title, description, images: shareImage },
+  twitter: { card: "summary_large_image", title, description, images: shareImage },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
