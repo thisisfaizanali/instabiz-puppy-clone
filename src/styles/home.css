@@ -235,6 +235,7 @@
 .tp-lineup__wings img {
   width: 176px !important;
   height: 220px !important;
+  object-fit: cover;
 }
 
 .tp-lineup__seat:first-child {
