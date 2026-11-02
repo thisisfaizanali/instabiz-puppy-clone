@@ -1,6 +1,7 @@
 // The number people call, and the separate one WhatsApp messages go to.
 const phoneNumber = "971500000000";
 const whatsappNumber = "919898124987";
+const socialHref = "https://www.instabizweb.com/";
 
 export const site = {
   name: "TeddyPups U.A.E.",
@@ -21,10 +22,11 @@ export const site = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Insta Biz Web, I'd like to discuss a project.")}`,
   email: "info@instabizweb.com",
   address: "Downtown Dubai, United Arab Emirates",
+  // The reference points all three at its parent site.
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/teddypups.worldwide/" },
-    { label: "TikTok", href: "https://www.tiktok.com/@teddypupsuae" },
-    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61567496944539" },
+    { label: "Instagram", href: socialHref },
+    { label: "TikTok", href: socialHref },
+    { label: "Facebook", href: socialHref },
   ],
   nav: [
     { label: "Home", href: "/" },
