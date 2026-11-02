@@ -290,6 +290,22 @@ html {
   fill: var(--night);
 }
 
+.tp-twinkle {
+  animation: tp-twinkle 3.2s ease-in-out infinite;
+}
+
+@keyframes tp-twinkle {
+  0%,
+  to {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(20deg);
+  }
+}
+
 .tp-moon {
   position: absolute;
   top: 10%;
