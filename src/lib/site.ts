@@ -6,6 +6,8 @@ const socialHref = "https://www.instabizweb.com/";
 export const site = {
   name: "TeddyPups U.A.E.",
   shortName: "TeddyPups",
+  description:
+    "TeddyPups U.A.E. is a Dubai-based brand specializing in miniature puppies, offering premium services and worldwide shipping.",
   // Origin for absolute URLs (metadataBase, JSON-LD, shared links, enquiry emails): SITE_URL,
   // then the production domain Vercel provides, then local dev. A getter, so the env vars are
   // only read where it's used, which is server code; client components never touch it.

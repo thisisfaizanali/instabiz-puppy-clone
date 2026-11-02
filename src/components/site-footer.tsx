@@ -55,10 +55,7 @@ export function SiteFooter() {
       <div className="gutter relative mx-auto grid max-w-[110rem] gap-12 pt-20 md:grid-cols-12 md:gap-x-12 md:gap-y-6 md:pt-28">
         <div className="md:col-span-5">
           <p className="font-plush text-big text-honey-soft">Home, at last.</p>
-          <p className="mt-5 max-w-md text-milk/80">
-            TeddyPups U.A.E. is a Dubai-based brand specializing in miniature puppies, offering premium services and
-            worldwide shipping.
-          </p>
+          <p className="mt-5 max-w-md text-milk/80">{site.description}</p>
         </div>
         <div className="order-last md:order-none md:col-span-5 md:col-start-1 md:row-start-2">
           <div className="tp-basket">
