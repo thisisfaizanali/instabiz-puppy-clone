@@ -2,14 +2,36 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { prefersReducedMotion } from "@/lib/reduced-motion";
 import { site } from "@/lib/site";
 import { Paw } from "./paw";
 
 export function MobileMenu() {
   const pathname = usePathname();
   const dialog = useRef<HTMLDialogElement>(null);
-  const close = () => dialog.current?.close();
+  // Plays the closing animation first; the dialog really closes when it ends (or after 600ms as a backstop).
+  const close = () => {
+    const menu = dialog.current;
+    if (!menu?.open || menu.dataset.closing) return;
+    if (prefersReducedMotion()) return menu.close();
+    menu.dataset.closing = "true";
+    const done = () => {
+      clearTimeout(timer);
+      menu.removeEventListener("animationend", onEnd);
+      if (menu.dataset.closing) menu.close();
+    };
+    const onEnd = (e: AnimationEvent) => e.target === menu && done();
+    const timer = setTimeout(done, 600);
+    menu.addEventListener("animationend", onEnd);
+  };
+
+  // Page links are taken over by the route curtain, which announces the navigation instead.
+  useEffect(() => {
+    const onNavigate = () => dialog.current?.close();
+    addEventListener("tp:navigate", onNavigate);
+    return () => removeEventListener("tp:navigate", onNavigate);
+  }, []);
 
   return (
     <>
@@ -25,6 +47,12 @@ export function MobileMenu() {
       <dialog
         ref={dialog}
         aria-label="Site menu"
+        onClick={(e) => e.target === e.currentTarget && close()}
+        onCancel={(e) => {
+          e.preventDefault();
+          close();
+        }}
+        onClose={(e) => delete e.currentTarget.dataset.closing}
         className="tp-menu m-0 h-dvh max-h-none w-screen max-w-none bg-honey p-0 text-cocoa backdrop:bg-cocoa/40"
       >
         <div className="gutter flex h-full flex-col pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">

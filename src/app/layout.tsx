@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
+import { RouteCurtain } from "@/components/route-curtain";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { shareImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -46,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${figtree.variable} ${fraunces.variable} ${shantell.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        <RouteCurtain />
         <a
           href="#main"
           className="sr-only-focusable fixed top-4 left-4 z-[100] rounded-full bg-cocoa px-5 py-3 font-semibold text-milk"
@@ -58,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <MobileBar />
+        <SmoothScroll />
       </body>
     </html>
   );

@@ -218,6 +218,83 @@
   transform-origin: 2.6rem -.6rem;
 }
 
+@media (max-width: 1023px) {
+  .tp-tag {
+    --swing: .25;
+  }
+}
+
+/* Scroll reveal: the tag swings in on its ring and settles. */
+.tp-tag[data-armed]:not([data-revealed]) {
+  opacity: 0;
+  rotate: calc(-8deg * var(--swing, 1));
+}
+
+.tp-tag[data-revealed] {
+  animation: tp-tag-swing 1.7s var(--ease-silk) both;
+}
+
+@media (hover: hover) {
+  .tp-tag[data-revealed]:hover {
+    animation: tp-tag-nudge 1.3s var(--ease-silk);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-tag,
+  .tp-tag[data-revealed],
+  .tp-tag[data-revealed]:hover {
+    opacity: 1;
+    animation: none;
+    rotate: 0deg;
+  }
+}
+
+@keyframes tp-tag-swing {
+  0% {
+    rotate: calc(-7deg * var(--swing, 1));
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  30% {
+    rotate: calc(4deg * var(--swing, 1));
+  }
+
+  50% {
+    rotate: calc(-2.2deg * var(--swing, 1));
+  }
+
+  70% {
+    rotate: calc(1deg * var(--swing, 1));
+  }
+
+  86% {
+    rotate: calc(-.4deg * var(--swing, 1));
+  }
+
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes tp-tag-nudge {
+  25% {
+    rotate: calc(1.6deg * var(--swing, 1));
+  }
+
+  55% {
+    rotate: calc(-.9deg * var(--swing, 1));
+  }
+
+  80% {
+    rotate: calc(.3deg * var(--swing, 1));
+  }
+}
+
 .tp-tag__ring {
   z-index: 1;
   aspect-ratio: 1;

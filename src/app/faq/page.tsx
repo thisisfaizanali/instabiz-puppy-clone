@@ -1,3 +1,4 @@
+import { RevealScope } from "@/components/reveal-scope";
 import { NoticeBoard } from "@/components/faq/notice-board";
 import { faqs } from "@/data/faq";
 import { pageMetadata } from "@/lib/metadata";
@@ -21,7 +22,7 @@ const faqPage = {
 
 export default function FaqPage() {
   return (
-    <div data-page="faq">
+    <RevealScope data-page="faq">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage).replace(/</g, "\\u003c") }}
@@ -46,6 +47,6 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
-    </div>
+    </RevealScope>
   );
 }

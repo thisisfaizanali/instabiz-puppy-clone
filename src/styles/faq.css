@@ -319,6 +319,29 @@
   }
 }
 
+/* Scroll reveal: each note drops onto the board, then its pin pops in. */
+.tp-note[data-armed]:not([data-revealed]) {
+  opacity: 0;
+  translate: var(--shift) -1.6rem;
+  rotate: calc(var(--tilt) + 5deg);
+}
+
+.tp-note[data-armed]:not([data-revealed]) .tp-note__pin {
+  scale: 0;
+}
+
+.tp-note[data-armed] {
+  transition: opacity .5s ease calc(min(var(--i), 6) * 70ms), translate .7s var(--ease-pounce) calc(min(var(--i), 6) * 70ms), rotate .7s var(--ease-pounce) calc(min(var(--i), 6) * 70ms), box-shadow .4s var(--ease-silk), scale .5s var(--ease-pounce);
+}
+
+.tp-note[data-armed] .tp-note__pin {
+  transition: scale .45s var(--ease-pounce) calc(min(var(--i), 6) * 70ms + .35s);
+}
+
+.tp-note[data-revealed] {
+  transition: rotate .5s var(--ease-pounce), translate .5s var(--ease-pounce), box-shadow .4s var(--ease-silk), scale .5s var(--ease-pounce);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tp-note, .tp-note::after, .tp-note__answer, .tp-note__flap p, .tp-note__chevron, .tp-notes__bubble > span {
     transition: none !important;

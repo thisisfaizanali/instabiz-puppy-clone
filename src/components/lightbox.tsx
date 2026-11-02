@@ -33,12 +33,6 @@ export function Lightbox({
       return;
     }
     if (!dialog.open) dialog.showModal();
-    const root = document.documentElement;
-    const overflow = root.style.overflow;
-    root.style.overflow = "hidden";
-    return () => {
-      root.style.overflow = overflow;
-    };
   }, [open]);
 
   const photo = open ? photos[index] : undefined;
@@ -48,6 +42,7 @@ export function Lightbox({
     <dialog
       ref={ref}
       aria-label={label}
+      data-lenis-prevent
       className="m-0 h-dvh max-h-none w-screen max-w-none bg-cocoa/95 p-0 text-milk backdrop:bg-cocoa/70"
       // Escape, the Android back gesture and other close requests arrive as cancel. Keep the dialog open
       // and let the parent close it, so its state stays the single source of truth.

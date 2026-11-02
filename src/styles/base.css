@@ -43,6 +43,35 @@ html {
   overflow-x: clip;
 }
 
+/* A modal dialog (menu, photo viewer) keeps the page behind it still. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 body {
   background: var(--color-milk);
   color: var(--color-cocoa);

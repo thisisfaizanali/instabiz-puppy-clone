@@ -36,8 +36,13 @@ export function SiteFooter() {
         <path d="M0 80V44c120-30 240-44 360-30s240 46 360 34 240-58 360-46 240 40 360 26v52z" />
       </svg>
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-6 h-64 overflow-hidden">
-        {stars.map((s) => (
-          <svg key={s.left} viewBox="0 0 40 40" className="absolute text-honey" style={s}>
+        {stars.map((s, i) => (
+          <svg
+            key={s.left}
+            viewBox="0 0 40 40"
+            className="tp-twinkle absolute text-honey"
+            style={{ ...s, animationDelay: `${(i * 0.4).toFixed(2)}s` }}
+          >
             <path
               d="M20 3c1.6 9.4 7.6 15.4 17 17-9.4 1.6-15.4 7.6-17 17-1.6-9.4-7.6-15.4-17-17 9.4-1.6 15.4-7.6 17-17z"
               fill="currentColor"

@@ -101,3 +101,13 @@
   margin-top: clamp(2rem, 6vh, 4rem);
   display: flex;
 }
+
+/* Scroll reveals for the heading and note; the photos get their own entrance. */
+.tp-memories [data-reveal]:not(.tp-wall__item) {
+  transition: opacity .6s ease, translate .7s var(--ease-silk);
+}
+
+.tp-memories [data-reveal][data-armed]:not([data-revealed]):not(.tp-wall__item) {
+  opacity: 0;
+  translate: 0 1rem;
+}

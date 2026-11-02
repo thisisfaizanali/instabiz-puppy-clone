@@ -77,9 +77,10 @@ export function NoticeBoard({ faqs, askHref }: { faqs: FaqItem[]; askHref: strin
               <li
                 key={note.id}
                 className="tp-note"
+                data-reveal
                 data-unfolded={open || undefined}
                 style={
-                  { "--tilt": `${tilts[i % tilts.length]}deg`, "--pin": pins[i % pins.length] } as React.CSSProperties
+                  { "--tilt": `${tilts[i % tilts.length]}deg`, "--pin": pins[i % pins.length], "--i": i } as React.CSSProperties
                 }
               >
                 <span aria-hidden="true" className="tp-note__pin" />
