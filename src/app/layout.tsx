@@ -3,6 +3,7 @@ import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { MobileBar } from "@/components/mobile-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { shareImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <MobileBar />
+        <SmoothScroll />
       </body>
     </html>
   );
