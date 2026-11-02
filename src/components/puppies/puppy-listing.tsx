@@ -5,14 +5,12 @@ import { useSyncExternalStore } from "react";
 import { PupBuddy } from "@/components/pup-buddy";
 import { PuppySketch } from "@/components/puppy-sketch";
 import { getPuppies } from "@/lib/puppies";
-import { whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import { usePuppyFilters } from "./puppy-filters";
 
 const spring = { type: "spring", stiffness: 260, damping: 26 } as const;
 const hidden = { opacity: 0, scale: 0.86 };
 const noSubscription = () => () => {};
-
-const askHref = whatsappLink("Hi TeddyPups! I'm looking for a puppy — what do you have at the moment?");
 
 // Count line, then the matching sketches or, when nothing matches, Teddy's empty state.
 export function PuppyListing() {
@@ -62,7 +60,7 @@ export function PuppyListing() {
               you.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={askHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+              <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
                 Ask on WhatsApp
               </a>
               <button type="button" onClick={clear} className="btn btn-ghost">

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { type ComponentProps, useActionState, useEffect, useId, useRef, useTransition } from "react";
 import { type EnquiryState, sendEnquiry } from "@/lib/send-enquiry";
+import { site } from "@/lib/site";
 
 const inputClass =
   "mt-1.5 h-12 w-full rounded-2xl border-2 border-cocoa/60 bg-milk px-4 text-base outline-none transition-[border-color,box-shadow] focus:border-cocoa focus:shadow-[0_0_0_4px_rgb(242_190_107/0.6)] aria-[invalid=true]:border-[#b3261e]";
@@ -45,11 +46,9 @@ function Field({ label, error, hint, ...input }: ComponentProps<"input"> & { lab
 // reuse them.
 export function EnquiryForm({
   puppy,
-  whatsappHref,
 }: {
   // Slug, and the label used in the prefilled message, e.g. "Leo (Poodle)".
   puppy: { slug: string; label: string };
-  whatsappHref: string;
 }) {
   const [state, dispatch, actionPending] = useActionState<EnquiryState, FormData>(sendEnquiry, { ok: false });
   const [transitionPending, startTransition] = useTransition();
@@ -159,7 +158,7 @@ export function EnquiryForm({
           <p className="mx-auto mt-2 max-w-[38ch] text-cocoa-soft">
             Thank you — our team will get back to you promptly. For the quickest reply, message us on WhatsApp.
           </p>
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
             WhatsApp us
           </a>
         </motion.div>

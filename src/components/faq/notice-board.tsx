@@ -3,6 +3,7 @@
 import { PupBuddy } from "@/components/pup-buddy";
 import { Fragment, useId, useState } from "react";
 import { AccordionItem } from "@/components/accordion";
+import { site } from "@/lib/site";
 import type { FaqItem } from "@/lib/types";
 
 // Tilts and pin colours cycle down the board, as on the reference.
@@ -23,7 +24,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
   return parts.map((part, i) => (i % 2 ? <mark key={i}>{part}</mark> : <Fragment key={i}>{part}</Fragment>));
 }
 
-export function NoticeBoard({ faqs, askHref }: { faqs: FaqItem[]; askHref: string }) {
+export function NoticeBoard({ faqs }: { faqs: FaqItem[] }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const inputId = useId();
@@ -64,7 +65,7 @@ export function NoticeBoard({ faqs, askHref }: { faqs: FaqItem[]; askHref: strin
           </span>
           <PupBuddy pose="sit" label="Teddy, reading the notes" />
         </div>
-        <a href={askHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp tp-notes__ask">
+        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp tp-notes__ask">
           Ask your own question
         </a>
       </aside>
@@ -113,7 +114,7 @@ export function NoticeBoard({ faqs, askHref }: { faqs: FaqItem[]; askHref: strin
             <span aria-hidden="true" className="tp-note__pin" />
             <p className="font-plush-text text-[1.2rem] font-bold">No note about “{query.trim()}” yet.</p>
             <p className="mt-2">
-              <a href={askHref} target="_blank" rel="noopener noreferrer" className="link-ink">
+              <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="link-ink">
                 Ask us on WhatsApp
               </a>{" "}
               and we&apos;ll answer.

@@ -3,6 +3,7 @@
 import { type ComponentProps, useActionState, useEffect, useId, useRef, useState, useTransition } from "react";
 import { Paw } from "@/components/paw";
 import { type EnquiryState, sendEnquiry } from "@/lib/send-enquiry";
+import { site } from "@/lib/site";
 
 // An inline blank in the letter, sized in characters like the reference.
 function Blank({
@@ -32,13 +33,7 @@ type Phase = "writing" | "sealing" | "posting" | "sent";
 // The /contact letter. On success it folds into an envelope, drops into the postbox and
 // swaps for the sent card, with the reference timings: sealing at 0, posting at 750 ms,
 // sent at 1750 ms. The container keeps its height until then so the page doesn't jump.
-export function LetterForm({
-  puppies,
-  whatsappHref,
-}: {
-  puppies: { slug: string; label: string }[];
-  whatsappHref: string;
-}) {
+export function LetterForm({ puppies }: { puppies: { slug: string; label: string }[] }) {
   const [state, dispatch, actionPending] = useActionState<EnquiryState, FormData>(sendEnquiry, { ok: false });
   const [transitionPending, startTransition] = useTransition();
   const pending = actionPending || transitionPending;
@@ -265,7 +260,7 @@ export function LetterForm({
           <p className="mx-auto mt-2 max-w-[40ch] text-cocoa-soft">
             Thank you — our team will get back to you promptly. For the quickest reply, message us on WhatsApp.
           </p>
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
             WhatsApp us
           </a>
         </div>

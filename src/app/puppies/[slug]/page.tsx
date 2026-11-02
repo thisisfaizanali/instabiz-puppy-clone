@@ -12,7 +12,7 @@ import { StoryRibbon } from "@/components/puppy/story-ribbon";
 import { puppies } from "@/data/puppies";
 import { coverStyle } from "@/lib/media";
 import { getAdjacentPuppies, getPuppy } from "@/lib/puppies";
-import { site, whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import type { Puppy } from "@/lib/types";
 
 const genderWords: Record<Puppy["gender"], string> = { male: "boy", female: "girl", "male-female": "boy & girl" };
@@ -107,12 +107,9 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
   const available = puppy.status === "available";
   const url = `${site.url}/puppies/${puppy.slug}`;
   const gender = genderWords[puppy.gender];
-  // "Max" or "this Maltipoo"; the prefilled message uses "Max (Maltipoo)" or just "Maltipoo".
+  // "Max" or "this Maltipoo"; the enquiry message uses "Max (Maltipoo)" or just "Maltipoo".
   const called = puppy.name || `this ${puppy.breed}`;
   const label = puppy.name ? `${puppy.name} (${puppy.breed})` : puppy.breed;
-  const askHref = available
-    ? whatsappLink(`Hi TeddyPups! I'm interested in ${puppy.name ? `${puppy.name}, the ${puppy.breed}` : `the ${puppy.breed} (${gender})`}: ${url}`)
-    : whatsappLink(`Hi TeddyPups! I loved ${puppy.name || `the ${puppy.breed}`} (${url}). Do you have a puppy like them?`);
   // Only imported puppies are listed today; the reference's text for a local puppy isn't visible.
   const showHomeSteps = available && puppy.origin === "imported";
   const rows = [
@@ -187,7 +184,7 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
                   ))}
                 </dl>
                 <div className="mt-8 flex flex-col gap-3">
-                  <a href={askHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+                  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
                     {available ? `Ask about ${puppy.name || "this puppy"} on WhatsApp` : "Ask about a puppy like this"}
                   </a>
                   <a href={`#enquire-${puppy.slug}`} className="btn btn-ghost">
@@ -257,7 +254,7 @@ async function PuppyStory({ params }: Pick<PageProps<"/puppies/[slug]">, "params
             </p>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
-            <EnquiryForm puppy={{ slug: puppy.slug, label }} whatsappHref={askHref} />
+            <EnquiryForm puppy={{ slug: puppy.slug, label }} />
           </div>
         </section>
         <nav aria-label="More puppies" className="mt-16 grid gap-4 sm:grid-cols-2">

@@ -3,7 +3,6 @@ import { LetterForm } from "@/components/contact/letter-form";
 import { Shopfront } from "@/components/contact/shopfront";
 import { pageMetadata } from "@/lib/metadata";
 import { getPuppies } from "@/lib/puppies";
-import { site } from "@/lib/site";
 import type { Puppy } from "@/lib/types";
 
 export const metadata = pageMetadata(
@@ -42,7 +41,7 @@ export default function ContactPage() {
           </header>
           <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
-              <LetterForm puppies={puppies} whatsappHref={site.whatsapp} />
+              <LetterForm puppies={puppies} />
               <PupBuddy pose="sit" facing="left" className="ml-auto mr-6 -mt-3 w-36 md:w-40" label="Teddy, waiting for your letter" />
             </div>
             <div className="lg:col-span-5 lg:row-start-1">
