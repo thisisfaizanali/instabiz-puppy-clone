@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import { GoneHomeStrip } from "@/components/puppies/gone-home-strip";
 import { PuppyFilters } from "@/components/puppies/puppy-filters";
 import { PuppyListing } from "@/components/puppies/puppy-listing";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Available puppies",
-  description:
-    "Teacup and teddy bear puppies available now in Dubai and imported from trusted breeders — every listing shows real photos of the puppy.",
-};
+export const metadata = pageMetadata(
+  "/puppies",
+  "Available puppies",
+  "Teacup and teddy bear puppies available now in Dubai and imported from trusted breeders — every listing shows real photos of the puppy.",
+);
 
 // Rendered per request so the filters and list come from the real URL in the first
 // HTML, rather than a prerendered unfiltered list that swaps after hydration.

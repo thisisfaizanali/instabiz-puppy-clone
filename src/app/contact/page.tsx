@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { LetterForm } from "@/components/contact/letter-form";
 import { Shopfront } from "@/components/contact/shopfront";
+import { pageMetadata } from "@/lib/metadata";
 import { getPuppies } from "@/lib/puppies";
 import { site } from "@/lib/site";
 import type { Puppy } from "@/lib/types";
 
-export const metadata: Metadata = {
-  title: "Visit & contact",
-  description: "Visit TeddyPups in Downtown Dubai or get in touch on WhatsApp, by phone or email.",
-};
+export const metadata = pageMetadata(
+  "/contact",
+  "Visit & contact",
+  "Visit TeddyPups in Downtown Dubai or get in touch on WhatsApp, by phone or email.",
+);
 
 const genderWords: Record<Puppy["gender"], string> = { male: "boy", female: "girl", "male-female": "boy & girl" };
 

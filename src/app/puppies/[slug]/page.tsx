@@ -42,9 +42,17 @@ export async function generateMetadata({ params }: PageProps<"/puppies/[slug]">)
   if (!puppy) return {};
   const where = puppy.origin === "local" ? "in Dubai" : "imported";
   const video = puppy.media.some((m) => m.kind === "video") ? " and video" : "";
+  const title = pageTitle(puppy);
+  const description = `Meet ${puppy.name || `this ${puppy.breed}`}: ${puppy.breed}, ${genderWords[puppy.gender]}, ${puppy.age} old, ${where}. Real photos${video} from ${site.name}`;
+  // The cover photo is the share image, as on the reference.
+  const cover = puppy.media[0].poster ?? puppy.media[0];
+  const image = { url: cover.url, width: cover.width, height: cover.height, alt: cover.alt };
   return {
-    title: pageTitle(puppy),
-    description: `Meet ${puppy.name || `this ${puppy.breed}`}: ${puppy.breed}, ${genderWords[puppy.gender]}, ${puppy.age} old, ${where}. Real photos${video} from ${site.name}`,
+    title,
+    description,
+    alternates: { canonical: `/puppies/${puppy.slug}` },
+    openGraph: { title, description, images: image },
+    twitter: { card: "summary_large_image", title, description, images: image },
   };
 }
 

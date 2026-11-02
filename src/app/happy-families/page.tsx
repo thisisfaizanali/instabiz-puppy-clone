@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { FamilyPhotoWall } from "@/components/happy-families/family-photo-wall";
 import { familyPhotos, testimonial } from "@/data/happy-families";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Happy families",
-  description: "Real photos shared by TeddyPups families after welcoming their new puppy home.",
-};
+export const metadata = pageMetadata(
+  "/happy-families",
+  "Happy families",
+  "Real photos shared by TeddyPups families after welcoming their new puppy home.",
+);
 
 export default function HappyFamiliesPage() {
   return (

@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Flight, Skyline } from "@/components/flight";
 import { Journeys } from "@/components/how-it-works/journeys";
 import { type Stamp, StampEntry, stampIcons } from "@/components/stamp";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "How it works",
-  description:
-    "Meet a local puppy in our Downtown Dubai showroom or reserve a premium teacup breed imported for you — every step, from choosing to coming home.",
-};
+export const metadata = pageMetadata(
+  "/how-it-works",
+  "How it works",
+  "Meet a local puppy in our Downtown Dubai showroom or reserve a premium teacup breed imported for you — every step, from choosing to coming home.",
+);
 
 const contents = [
   { href: "#two-ways", label: "Two ways home" },
